@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1004367171665",
+    "firebase_url": "https://cnc-mc.firebaseio.com",
+    "project_id": "cnc-mc",
+    "storage_bucket": "cnc-mc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004367171665:android:a9fc5c165443942d",
+        "android_client_info": {
+          "package_name": "kr.ac.kmu.ncs.cnc_mc_monitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004367171665-in873gldm95evrk5q6vtgr184ab5s4rv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgjAHdoYYVA9jNssRz5173uT95asSjtFg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
