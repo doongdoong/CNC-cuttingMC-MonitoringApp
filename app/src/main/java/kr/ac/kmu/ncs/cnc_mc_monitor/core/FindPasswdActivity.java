@@ -1,5 +1,6 @@
 package kr.ac.kmu.ncs.cnc_mc_monitor.core;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -67,12 +68,19 @@ public class FindPasswdActivity extends AppCompatActivity {
 
                 findPasswdTask = new FindPasswdTask();
                 findPasswdTask.execute();
+
+                btn_reset.setEnabled(false);
             }
         });
     }
 
     class FindPasswdTask extends AsyncTask<String ,Integer ,Integer> {
+        ProgressDialog asyncDialog = new ProgressDialog(FindPasswdActivity.this);
+
         protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("요청중 입니다.");
+            asyncDialog.show();
         }
 
         @Override
@@ -94,6 +102,8 @@ public class FindPasswdActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "비밀번호를 변경하지 못했습니다.",Toast.LENGTH_SHORT).show();
             else if(value[0] == 1)
                 Toast.makeText(getApplicationContext(), "비밀번호를 변경하였습니다.",Toast.LENGTH_SHORT).show();
+            asyncDialog.dismiss();
+            btn_reset.setEnabled(true);
         }
 
         public Boolean reset() {
@@ -103,13 +113,13 @@ public class FindPasswdActivity extends AppCompatActivity {
             String urlStr = Constants.SERVERADDRESS;
             Boolean result = false;
 
-            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+            //String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
 
             JSONObject json = new JSONObject();
             try {
                 json.put("name", name);
                 json.put("email", ID);
-                json.put("password", hashedPassword);
+                json.put("password", password);
                 json.put("organization", organization);
             }
             catch (JSONException ex) {
@@ -172,6 +182,4 @@ public class FindPasswdActivity extends AppCompatActivity {
             return result;
         }
     }
-
-
 }

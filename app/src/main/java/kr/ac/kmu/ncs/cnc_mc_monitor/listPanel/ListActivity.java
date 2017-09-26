@@ -52,7 +52,7 @@ public class  ListActivity  extends Activity {
         View parentLayout = findViewById(android.R.id.content);
         SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
         SimpleDateFormat time = new SimpleDateFormat("a hh:mm");
-        Snackbar.make(parentLayout, date.format(Constants.TIME_LASTSEXION) + " " + time.format(Constants.TIME_LASTSEXION), Snackbar.LENGTH_LONG).show();
+        Snackbar.make(parentLayout, "마지막 접속 시간 " + date.format(Constants.TIME_LASTSEXION) + " " + time.format(Constants.TIME_LASTSEXION), Snackbar.LENGTH_LONG).show();
 
         init();
     }

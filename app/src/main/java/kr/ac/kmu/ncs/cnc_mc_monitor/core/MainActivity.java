@@ -1,5 +1,6 @@
 package kr.ac.kmu.ncs.cnc_mc_monitor.core;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -44,12 +45,17 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("fcm_token",token);
             editor.commit();
         }
-
         init();
     }
 
+
     class HTTPConnectionTask extends AsyncTask<String ,Integer ,Integer> {
+        ProgressDialog asyncDialog = new ProgressDialog(MainActivity.this);
+
         protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("서버에 연결중입니다.");
+            asyncDialog.show();
         }
 
         @Override
@@ -57,19 +63,23 @@ public class MainActivity extends AppCompatActivity {
             Boolean result = request();
 
             if(result != true) {
-                publishProgress();
+                publishProgress(0);
                 return null;
             }
 
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            publishProgress(1);
             startActivity(intent);
 
             return null;
         }
 
         protected void onProgressUpdate(Integer... value) {
-            Toast.makeText(getApplicationContext(), "잘못된 서버 주소입니다.",Toast.LENGTH_SHORT).show();
+            if(value[0]==0)
+                Toast.makeText(getApplicationContext(), "네트워크 연결을 확인하세요.",Toast.LENGTH_SHORT).show();
+            asyncDialog.dismiss();
+            btnConnect.setEnabled(true);
         }
 
         public Boolean request() {
@@ -107,7 +117,10 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject responseJSON = new JSONObject(response);
 
                         result = (Boolean) responseJSON.get("type");
-                        Constants.ORGINIZATION = (String) responseJSON.get("data");
+
+                        if(result==true) {
+                            Constants.ORGINIZATION = (String) responseJSON.get("data");
+                        }
 
                         is.close();
                         conn.disconnect();
@@ -122,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
                 ex.printStackTrace();
                 result = false;
             }
-
             return result;
         }
     }
@@ -143,12 +155,9 @@ public class MainActivity extends AppCompatActivity {
                         task = new HTTPConnectionTask();
                         task.execute();
 
-                // Start a service that periodically updates the database\
-
-
+                        btnConnect.setEnabled(false);
             }
         });
+        btnConnect.callOnClick();
     }
-
-
 }

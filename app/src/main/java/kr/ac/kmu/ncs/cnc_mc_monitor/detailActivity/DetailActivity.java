@@ -45,10 +45,12 @@ public class DetailActivity extends FragmentActivity {
     }
 
     private void setDataToIntent(){
-        Intent intent = getIntent();
-        intent.putExtra(Constants.INTENT_KEY_MACHINE_ID, machineID);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.INTENT_KEY_MACHINE_ID, machineID);
+        CameraFragment.getInstance().setArguments(bundle);
     }
 
+    //onBackPressed 구현
 
 
     private void init(){
@@ -114,5 +116,4 @@ public class DetailActivity extends FragmentActivity {
             return super.getPageTitle(position);
         }
     }
-
 }

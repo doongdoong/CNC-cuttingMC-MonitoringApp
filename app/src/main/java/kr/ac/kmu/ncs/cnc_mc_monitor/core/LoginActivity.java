@@ -1,5 +1,6 @@
 package kr.ac.kmu.ncs.cnc_mc_monitor.core;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         android.support.v7.app.ActionBar ab =getSupportActionBar();
         ab.setTitle(Constants.ORGINIZATION);
+        ab.setDisplayShowHomeEnabled(true);
 
         init();
     }
@@ -64,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
             id = new String(edt_ID.getText().toString());
             password = new String(edt_passwd.getText().toString());
 
+            v.setEnabled(false);
+
             loginTask = new LoginTask();
             loginTask.execute();
         }
@@ -80,7 +84,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     class LoginTask extends AsyncTask<String ,Integer ,Integer> {
+        ProgressDialog asyncDialog = new ProgressDialog(LoginActivity.this);
+
         protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("로그인중 입니다.");
+            asyncDialog.show();
         }
 
         @Override
@@ -88,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
             Boolean result = cert();
 
             if(result != true) {
-                publishProgress();
+                publishProgress(0);
                 Log.d(this.getClass().getSimpleName(), "/cert 에러");
                 return null;
             }
@@ -96,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
             result = validate();
 
             if(result != true) {
-                publishProgress();
+                publishProgress(0);
                 Log.d(this.getClass().getSimpleName(), "/validate 에러");
                 return null;
             }
@@ -109,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                 fcm_compare();
 
                 if(result != true) {
-                    publishProgress();
+                    publishProgress(0);
                     Log.d(this.getClass().getSimpleName(), "/fcm_compare 에러");
                     return null;
                 }
@@ -117,13 +126,17 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent = new Intent(getApplicationContext(), ListActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            publishProgress(1);
             startActivity(intent);
 
             return null;
         }
 
         protected void onProgressUpdate(Integer... value) {
-            Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+            if(value[0]==0)
+                Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+            asyncDialog.dismiss();
+            btn_login.setEnabled(true);
         }
 
         public Boolean cert() {
@@ -239,8 +252,10 @@ public class LoginActivity extends AppCompatActivity {
 
                         result = (Boolean)responseJSON.get("type");
 
-                        lastConnectUnixTime = "" + responseJSON.get("timestamp");
-                        Constants.TIME_LASTSEXION = new Date(Long.parseLong(lastConnectUnixTime) * 1000L);
+                        if(result==true) {
+                            lastConnectUnixTime = "" + responseJSON.get("timestamp");
+                            Constants.TIME_LASTSEXION = new Date(Long.parseLong(lastConnectUnixTime) * 1000L);
+                        }
 
                         is.close();
                         conn.disconnect();

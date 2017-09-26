@@ -30,6 +30,7 @@ public class DbUpdateService extends Service {
     private RefreshTask refreshTask;
     private ArrayList<MachineDataSet> mListMachineDataSet;
     private Bundle bundle;
+    private boolean check_temination;
 
     @Override
     public void onCreate() {
@@ -53,7 +54,8 @@ public class DbUpdateService extends Service {
     public void onDestroy() {
         Log.d(getClass().getSimpleName(), "DB Service가 중지되었습니다.");
         // 스레드 종료
-        refreshTask.cancel(true);
+
+
     }
 
     class RefreshTask extends AsyncTask<Integer, Integer, Integer> {
@@ -88,7 +90,8 @@ public class DbUpdateService extends Service {
 
         //publishProgress() 호출 시
         protected void onProgressUpdate(Integer... value) {
-            Toast.makeText(getApplicationContext(), "데이터 수신에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+            if(check_temination != true)
+                Toast.makeText(getApplicationContext(), "데이터 수신에 실패하였습니다.",Toast.LENGTH_SHORT).show();
         }
 
         //doInBackground에서 return된 값이 넘어옴
@@ -101,6 +104,7 @@ public class DbUpdateService extends Service {
             ByteArrayOutputStream baos;
             String urlStr = Constants.SERVERADDRESS;
             Boolean result = false;
+            check_temination = true;
 
             try {
                 URL url = new URL(urlStr + "/data/renewed_data");
@@ -110,7 +114,6 @@ public class DbUpdateService extends Service {
                     conn.setConnectTimeout(Constants.CONN_TIMEOUT);
                     conn.setRequestMethod("GET");
                     conn.setDoInput(true);
-                    //수정요망
                     conn.setRequestProperty("authorization", Constants.TOKEN);
                     conn.setRequestProperty("Accept", "application/json");
 
@@ -136,31 +139,35 @@ public class DbUpdateService extends Service {
 
                         //Log.d(getClass().getSimpleName(), "" + result);
 
-                        String dataString = (String) responceJSON.get("data");
-                        JSONArray jarray = new JSONArray(dataString);
+                        if(result==true) {
+                            String dataString = (String) responceJSON.get("data");
+                            JSONArray jarray = new JSONArray(dataString);
 
-                        for(int i=0; i < jarray.length(); i++){
-                            JSONObject jObject = jarray.getJSONObject(i);
+                            for(int i=0; i < jarray.length(); i++){
+                                JSONObject jObject = jarray.getJSONObject(i);
 
-                            Constants.ID = jObject.getString("id");
-                            Constants.LUBRICANT_MACHINE = jObject.getString("lubricant_machine");
-                            Constants.LUBRICANT_SAW = jObject.getString("lubricant_saw");
-                            Constants.PRESSURE_AIR_MAIN = jObject.getString("pressure_air_main");
-                            Constants.PRESSURE_OIL_HYDRAULIC = jObject.getString("pressure_oil_hydraulic");
-                            Constants.SERVO_CUT = jObject.getString("servo_cut");
-                            Constants.SERVO_TRANSFER = jObject.getString("servo_transfer");
-                            Constants.SPINDLE = jObject.getString("spindle");
-                            Constants.SAFETY_DOOR = jObject.getString("safety_door");
-                            Constants.DEPLETION = jObject.getString("depletion");
-                            Constants.WORKLOAD = jObject.getString("workload");
-                            Constants.TIMESTAMP = jObject.getString("timestamp");
+                                Constants.ID = jObject.getString("id");
+                                Constants.LUBRICANT_MACHINE = jObject.getString("lubricant_machine");
+                                Constants.LUBRICANT_SAW = jObject.getString("lubricant_saw");
+                                Constants.PRESSURE_AIR_MAIN = jObject.getString("pressure_air_main");
+                                Constants.PRESSURE_OIL_HYDRAULIC = jObject.getString("pressure_oil_hydraulic");
+                                Constants.SERVO_CUT = jObject.getString("servo_cut");
+                                Constants.SERVO_TRANSFER = jObject.getString("servo_transfer");
+                                Constants.SPINDLE = jObject.getString("spindle");
+                                Constants.SAFETY_DOOR = jObject.getString("safety_door");
+                                Constants.DEPLETION = jObject.getString("depletion");
+                                Constants.WORKLOAD = jObject.getString("workload");
+                                Constants.TIMESTAMP = jObject.getString("timestamp");
 
-                            helper.insertMachine(Constants.ID, Constants.LUBRICANT_MACHINE, Constants.LUBRICANT_SAW,
-                                    Constants.PRESSURE_AIR_MAIN, Constants.PRESSURE_OIL_HYDRAULIC, Constants.SERVO_CUT,
-                                    Constants.SERVO_TRANSFER, Constants.SPINDLE, Constants.SAFETY_DOOR, Constants.DEPLETION,
-                                    Constants.WORKLOAD, Constants.TIMESTAMP);
+                                helper.insertMachine(Constants.ID, Constants.LUBRICANT_MACHINE, Constants.LUBRICANT_SAW,
+                                        Constants.PRESSURE_AIR_MAIN, Constants.PRESSURE_OIL_HYDRAULIC, Constants.SERVO_CUT,
+                                        Constants.SERVO_TRANSFER, Constants.SPINDLE, Constants.SAFETY_DOOR, Constants.DEPLETION,
+                                        Constants.WORKLOAD, Constants.TIMESTAMP);
+                            }
+
+                            check_temination = false;
+
                         }
-
                         is.close();
                         conn.disconnect();
                     }
@@ -174,7 +181,6 @@ public class DbUpdateService extends Service {
                 ex.printStackTrace();
                 result = false;
             }
-
             return result;
         }
 

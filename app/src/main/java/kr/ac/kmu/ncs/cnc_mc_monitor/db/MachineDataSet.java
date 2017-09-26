@@ -19,7 +19,7 @@ public class MachineDataSet implements Serializable{
     private boolean safety_door;
     private boolean depletion;
     private long workload;
-    private int timestamp;
+    private long timestamp;
 
     private MachineDataSet(){}
 
@@ -168,7 +168,7 @@ public class MachineDataSet implements Serializable{
         this.workload = workload;
     }
 
-    public int getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 

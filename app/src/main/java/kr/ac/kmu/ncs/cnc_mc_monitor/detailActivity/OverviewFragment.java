@@ -11,15 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
 import kr.ac.kmu.ncs.cnc_mc_monitor.db.DbHelper;
-import kr.ac.kmu.ncs.cnc_mc_monitor.db.DbUpdateService;
 import kr.ac.kmu.ncs.cnc_mc_monitor.db.MachineDataSet;
 
 /**
@@ -75,6 +74,7 @@ public class OverviewFragment extends Fragment {
     private TextView tv_safety_door;
     private TextView tv_depletion;
     private TextView tv_workload;
+    private TextView tv_timestamp;
 
     @Nullable
     @Override
@@ -100,6 +100,7 @@ public class OverviewFragment extends Fragment {
         tv_safety_door = (TextView) view.findViewById(R.id.tv_safety_door);
         tv_depletion = (TextView) view.findViewById(R.id.tv_depletion);
         tv_workload = (TextView) view.findViewById(R.id.tv_workload);
+        tv_timestamp = (TextView) view.findViewById(R.id.tv_timestamp);
 
         return view;
     }
@@ -133,13 +134,19 @@ public class OverviewFragment extends Fragment {
 
                 tv_workload.setText(current + "/" + total);
 
+                long timestamp = mListMachineDataSet.get(i).getTimestamp();
+
+                SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat time = new SimpleDateFormat("a hh:mm:ss");
+
+                tv_timestamp.setText(date.format(timestamp*1000L) + " " + time.format(timestamp*1000L));
+
                 Log.d("데이터 확인", "" + mListMachineDataSet.get(i).getId());
                 Log.d("데이터 확인", "" + mListMachineDataSet.get(i).getLubricant_machine());
                 Log.d("데이터 확인", "" + mListMachineDataSet.get(i).getPressure_air_main());
                 Log.d("데이터 확인", current + "/" + total);
             }
         }
-
     }
 
     BroadcastReceiver receiver = new BroadcastReceiver() {

@@ -1,5 +1,6 @@
 package kr.ac.kmu.ncs.cnc_mc_monitor.core;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -64,13 +65,18 @@ public class SignUpActivity extends AppCompatActivity {
                 signUpTask = new SignUpTask();
                 signUpTask.execute();
 
-                //로그인화면으로 돌아가기
+                btn_OK.setEnabled(false);
             }
         });
     }
 
     class SignUpTask extends AsyncTask<String ,Integer ,Integer> {
+        ProgressDialog asyncDialog = new ProgressDialog(SignUpActivity.this);
+
         protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("요청중 입니다.");
+            asyncDialog.show();
         }
 
         @Override
@@ -92,6 +98,8 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "가입에 실패하였습니다.",Toast.LENGTH_SHORT).show();
             else if(value[0] == 1)
                 Toast.makeText(getApplicationContext(), "가입 승인을 요청하였습니다.",Toast.LENGTH_SHORT).show();
+            asyncDialog.dismiss();
+            btn_OK.setEnabled(true);
         }
 
         public Boolean signUp() {
@@ -101,13 +109,14 @@ public class SignUpActivity extends AppCompatActivity {
             String urlStr = Constants.SERVERADDRESS;
             Boolean result = false;
 
-            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+            //String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
 
             JSONObject json = new JSONObject();
             try {
                 json.put("name", name);
                 json.put("email", email);
-                json.put("password", hashedPassword);
+                //json.put("password", hashedPassword);
+                json.put("password", password);
                 json.put("organization", organization);
             }
             catch (JSONException ex) {
@@ -170,5 +179,4 @@ public class SignUpActivity extends AppCompatActivity {
             return result;
         }
     }
-
 }
