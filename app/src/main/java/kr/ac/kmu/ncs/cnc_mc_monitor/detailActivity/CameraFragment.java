@@ -37,11 +37,12 @@ import java.util.StringTokenizer;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
+import kr.ac.kmu.ncs.cnc_mc_monitor.core.OnTaskCompleted;
 
 /**
  * Created by NCS-KSW on 2017-07-20.
  */
-public class CameraFragment extends Fragment {
+public class CameraFragment extends Fragment{
 
     private static CameraFragment instance;
     private HttpURLConnection conn;
@@ -69,7 +70,6 @@ public class CameraFragment extends Fragment {
         return instance;
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -85,8 +85,16 @@ public class CameraFragment extends Fragment {
 
         init();
 
+        try {
+            Thread.sleep(300);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return view;
     }
+
 
     private void init() {
         titleList = new ArrayList<String>();
@@ -94,7 +102,6 @@ public class CameraFragment extends Fragment {
         videoListAdapter = new VideoListAdapter();
         lvVideo.setAdapter(videoListAdapter);
         cmpDesc = new Comparator<String>() { @Override public int compare(String o1, String o2) { return o2.compareTo(o1) ; } } ;
-
 
         videoListTask = new VideoListTask();
         videoListTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -131,22 +138,7 @@ public class CameraFragment extends Fragment {
         Map<String, String> map = new HashMap<String, String>();
         map.put("authorization", Constants.TOKEN);
 
-//        builder = new Uri.Builder();
-//        builder.scheme("rtsp")
-//                .encodedAuthority("210.125.31.25:5000")
-//                .appendPath("1");
-//
-//        Map<String, String> map = new HashMap<String, String>();
-//        map.put("authorization", Constants.TOKEN);
-
-
-//        videoview.setVideoURI(Uri.parse("http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8"));
-
-//        String s = "rstp://210.125.31.25:5000/1";
-//        Uri u = Uri.parse(s);
-
         videoview.setVideoURI(builder.build(), map);
-//        videoview.setVideoURI(u);
         videoview.requestFocus();
         videoview.start();
 
@@ -243,13 +235,16 @@ public class CameraFragment extends Fragment {
                 return null;
             }
 
-            //목록 수신 후 동작
+            //publishProgress(1);
+
             return null;
         }
 
         protected void onProgressUpdate(Integer... value) {
             if(value[0]==0)
                 Toast.makeText(getContext(), "영상 목록 로딩에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+
+            //videoListAdapter.notifyDataSetChanged();
         }
 
         public Boolean list() {
@@ -332,8 +327,6 @@ public class CameraFragment extends Fragment {
                                 videoList.add(new VideoListItem(machineID, titleList.get(i).substring(1, titleList.get(i).length()-1), Constants.drawableToBitmap(getResources(), R.drawable.android_logo)));
                             }
                         }
-
-                        videoListAdapter.notifyDataSetChanged();
 
                         is.close();
                         conn.disconnect();

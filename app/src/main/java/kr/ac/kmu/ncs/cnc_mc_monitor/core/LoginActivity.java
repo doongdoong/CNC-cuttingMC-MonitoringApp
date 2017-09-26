@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
     private Button btn_signin;
     private Button btn_findPasswd;
+    private CheckBox cbx_autologin;
     private EditText edt_ID;
     private EditText edt_passwd;
     private LoginTask loginTask;
@@ -59,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         this.btn_findPasswd = (Button)findViewById(R.id.btn_findPasswd);
         this.edt_ID = (EditText)findViewById(R.id.edt_ID);
         this.edt_passwd = (EditText)findViewById(R.id.edt_passwd);
+        this.cbx_autologin = (CheckBox)findViewById(R.id.cbx_autologin);
     }
 
     public void onClick(View v) {

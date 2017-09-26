@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseInstanceId.getInstance().getToken();
         String token = FirebaseInstanceId.getInstance().getToken();
-        Log.d("FCM_Token", token);
 
         if(!token.isEmpty()) {
             SharedPreferences fcm_token = getSharedPreferences("fcm_token", MODE_PRIVATE);
@@ -45,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("fcm_token",token);
             editor.commit();
         }
+
+
+
         init();
     }
 

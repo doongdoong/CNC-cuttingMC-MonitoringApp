@@ -82,7 +82,6 @@ public class OverviewFragment extends Fragment {
         filter = new IntentFilter();
         filter.addAction("renewed_data");
         filter.addAction("failed_to_renew_data");
-        getActivity().registerReceiver(receiver, filter);
         getDataFromIntent();
 
         helper = new DbHelper(getContext());
@@ -105,8 +104,19 @@ public class OverviewFragment extends Fragment {
         return view;
     }
 
-    public void onBackPressed() {
+    @Override
+    public void onResume() {
+        getActivity().registerReceiver(receiver, filter);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
         getActivity().unregisterReceiver(receiver);
+        super.onPause();
+    }
+
+    public void onBackPressed() {
         super.getActivity().onBackPressed();
     }
 

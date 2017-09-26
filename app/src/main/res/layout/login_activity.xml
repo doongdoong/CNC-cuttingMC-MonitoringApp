@@ -30,7 +30,6 @@
             android:hint="abcd12345@google.com"/>
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,8 +47,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="kkkk"
-            android:hint=" 비         밀         번         호 "
-            android:layout_marginBottom="50dp"/>
+            android:hint=" 비         밀         번         호 "/>
     </LinearLayout>
 
     <Button
@@ -81,6 +79,11 @@
             android:onClick="onClick"/>
     </LinearLayout>
 
-
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cbx_autologin"
+        android:text="Remember Login"
+        android:layout_gravity="center"/>
 
 </LinearLayout>
