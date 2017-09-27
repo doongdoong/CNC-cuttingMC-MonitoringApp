@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -37,10 +38,13 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_signin;
     private Button btn_findPasswd;
     private CheckBox cbx_autologin;
+    private Boolean loginChecked;
     private EditText edt_ID;
     private EditText edt_passwd;
     private LoginTask loginTask;
     private HttpURLConnection conn;
+    private SharedPreferences prf;
+    private SharedPreferences.Editor editor;
     private String id;
     private String password;
     private String lastConnectUnixTime;
@@ -77,12 +81,37 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void init() {
+        prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        editor = prf.edit();
         this.btn_login = (Button)findViewById(R.id.btn_login);
         this.btn_signin = (Button)findViewById(R.id.btn_signin);
         this.btn_findPasswd = (Button)findViewById(R.id.btn_findPasswd);
         this.edt_ID = (EditText)findViewById(R.id.edt_ID);
         this.edt_passwd = (EditText)findViewById(R.id.edt_passwd);
         this.cbx_autologin = (CheckBox)findViewById(R.id.cbx_autologin);
+        this.loginChecked = prf.getBoolean("autoLogin", false);
+
+
+        if (prf.getBoolean("autoLogin", false)) {
+            edt_ID.setText(prf.getString("ID", ""));
+            edt_passwd.setText(prf.getString("password", ""));
+            cbx_autologin.setChecked(true);
+        }
+
+        cbx_autologin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    loginChecked = true;
+                } else {
+                    loginChecked = false;
+                    editor.putString("ID", "");
+                    editor.putString("password", "");
+                    editor.putBoolean("autoLogin", false);
+                    editor.commit();
+                }
+            }
+        });
     }
 
     public void onClick(View v) {
@@ -146,6 +175,13 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d(this.getClass().getSimpleName(), "/fcm_compare 에러");
                     return null;
                 }
+            }
+
+            if(loginChecked) {
+                editor.putString("ID", id);
+                editor.putString("password", password);
+                editor.putBoolean("autoLogin", true);
+                editor.commit();
             }
 
             Intent intent = new Intent(getApplicationContext(), ListActivity.class);
@@ -311,7 +347,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 JSONObject json = new JSONObject();
                 try {
-                    SharedPreferences prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
                     String fcm_token = prf.getString("fcm_token", "");
                     Log.d("토큰", fcm_token);
 
@@ -388,7 +423,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 JSONObject json = new JSONObject();
                 try {
-                    SharedPreferences prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
                     String fcm_token = prf.getString("fcm_token", "");
                     Log.d("regist토큰", fcm_token);
 
