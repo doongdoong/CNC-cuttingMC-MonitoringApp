@@ -27,6 +27,8 @@
             android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name=".core.FindPasswdActivity"
             android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name=".core.SettingActivity"
+            android:theme="@style/Theme.AppCompat.Light"/>
         <service android:name=".db.DbUpdateService"
             android:enabled="true"/>
         <service android:name=".FCM.MyFirebaseInstanceIDService">

@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="kkkk"
+            android:text=""
             android:hint="abcd12345@google.com"/>
     </LinearLayout>
 
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="kkkk"
+            android:text=""
             android:hint=" 비         밀         번         호 "/>
     </LinearLayout>
 

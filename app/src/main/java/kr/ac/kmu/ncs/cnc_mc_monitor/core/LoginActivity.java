@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -53,6 +55,25 @@ public class LoginActivity extends AppCompatActivity {
         ab.setDisplayShowHomeEnabled(true);
 
         init();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.setting :
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void init() {
@@ -290,8 +311,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 JSONObject json = new JSONObject();
                 try {
-                    SharedPreferences fcm = getSharedPreferences("fcm_token", MODE_PRIVATE);
-                    String fcm_token = fcm.getString("fcm_token", "");
+                    SharedPreferences prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+                    String fcm_token = prf.getString("fcm_token", "");
                     Log.d("토큰", fcm_token);
 
                     json.put("email", id);
@@ -367,8 +388,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 JSONObject json = new JSONObject();
                 try {
-                    SharedPreferences fcm = getSharedPreferences("fcm_token", MODE_PRIVATE);
-                    String fcm_token = fcm.getString("fcm_token", "");
+                    SharedPreferences prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+                    String fcm_token = prf.getString("fcm_token", "");
                     Log.d("regist토큰", fcm_token);
 
                     json.put("email", id);

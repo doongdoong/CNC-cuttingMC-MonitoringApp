@@ -6,12 +6,11 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONObject;
 
@@ -28,23 +27,17 @@ public class MainActivity extends AppCompatActivity {
     private Button btnConnect;
     private HTTPConnectionTask task;
     private HttpURLConnection conn;
+    private String fcm_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseInstanceId.getInstance().getToken();
-        String token = FirebaseInstanceId.getInstance().getToken();
+        SharedPreferences prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        fcm_token = prf.getString("fcm_token", "");
 
-        if(!token.isEmpty()) {
-            SharedPreferences fcm_token = getSharedPreferences("fcm_token", MODE_PRIVATE);
-            SharedPreferences.Editor editor = fcm_token.edit();
-            editor.putString("fcm_token",token);
-            editor.commit();
-        }
-
-
+        Log.d("fcm_token", fcm_token);
 
         init();
     }

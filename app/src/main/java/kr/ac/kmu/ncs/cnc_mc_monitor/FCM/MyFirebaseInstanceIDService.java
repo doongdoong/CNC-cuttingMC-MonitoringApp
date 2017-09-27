@@ -1,5 +1,6 @@
 package kr.ac.kmu.ncs.cnc_mc_monitor.FCM;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -17,5 +18,9 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String token = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + token);
 
+        SharedPreferences prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prf.edit();
+        editor.putString("fcm_token", token);
+        editor.commit();
     }
 }
