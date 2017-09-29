@@ -42,7 +42,6 @@ public class SettingActivity extends ActionBarActivity {
         this.btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 뒤로 옮겨야해
                 editor.putString("IP", edt_IP.getText().toString());
                 editor.putString("rnw_data_interval", edt_renewed_data_interval.getText().toString());
                 editor.commit();
