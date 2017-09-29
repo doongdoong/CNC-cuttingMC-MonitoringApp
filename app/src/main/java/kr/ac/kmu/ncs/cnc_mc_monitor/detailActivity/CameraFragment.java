@@ -243,8 +243,6 @@ public class CameraFragment extends Fragment{
         protected void onProgressUpdate(Integer... value) {
             if(value[0]==0)
                 Toast.makeText(getContext(), "영상 목록 로딩에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-
-            //videoListAdapter.notifyDataSetChanged();
         }
 
         public Boolean list() {

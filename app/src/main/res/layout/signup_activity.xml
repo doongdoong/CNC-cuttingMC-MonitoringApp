@@ -16,14 +16,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="이 름        : "/>
+            android:text="이 름         : "/>
 
         <EditText
             android:id="@+id/edt_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:hint="                                            "/>
+            android:maxLength="10"
+            android:hint="                                                   "/>
     </LinearLayout>
 
     <LinearLayout
@@ -34,14 +35,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="ID               : "/>
+            android:text="ID                : "/>
 
         <EditText
             android:id="@+id/edt_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:hint="abcd12345@google.com"/>
+            android:maxLength="25"
+            android:hint="  abcd12345@google.com   "/>
     </LinearLayout>
 
     <LinearLayout
@@ -59,7 +61,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:hint="비         밀         번         호"/>
+            android:password="true"
+            android:maxLength="16"
+            android:hint="                     "/>
     </LinearLayout>
 
     <Button

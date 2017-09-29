@@ -23,8 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
+            android:maxLength="20"
             android:text=""
-            android:hint="abcd12345@google.com"/>
+            android:hint="                                                   "/>
     </LinearLayout>
 
     <LinearLayout
@@ -42,7 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:hint="                                            "/>
+            android:maxLength="10"
+            android:hint="                                                   "/>
     </LinearLayout>
 
     <LinearLayout
@@ -60,7 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:hint="abcd12345@google.com"/>
+            android:maxLength="25"
+            android:hint="  abcd12345@google.com   "/>
     </LinearLayout>
 
     <LinearLayout
@@ -78,7 +81,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:hint="비        밀        번        호"/>
+            android:password="true"
+            android:maxLength="16"
+            android:hint="                 "/>
     </LinearLayout>
 
     <Button

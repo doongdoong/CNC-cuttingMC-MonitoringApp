@@ -2,6 +2,7 @@ package kr.ac.kmu.ncs.cnc_mc_monitor.db;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,11 +32,14 @@ public class DbUpdateService extends Service {
     private ArrayList<MachineDataSet> mListMachineDataSet;
     private Bundle bundle;
     private boolean check_temination;
+    private SharedPreferences prf;
+    private SharedPreferences.Editor editor;
 
     @Override
     public void onCreate() {
         this.helper = new DbHelper(getBaseContext());
         mListMachineDataSet = new ArrayList<MachineDataSet>();
+        prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
     }
 
     @Override
@@ -79,7 +83,7 @@ public class DbUpdateService extends Service {
                 broadcastIntent(result);
 
                 try{
-                    Thread.sleep(2000);
+                    Thread.sleep(Integer.parseInt(prf.getString("rnw_data_interval", "2"))*1000);
                 }
                 catch (Exception e){
                     Log.d(getClass().getSimpleName(), "sleep 에러");

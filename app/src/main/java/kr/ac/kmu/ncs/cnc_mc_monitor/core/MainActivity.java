@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
                 this.edtAddress = (EditText)findViewById(R.id.edt_address);
                 this.btnConnect = (Button)findViewById(R.id.btn_connect);
+                SharedPreferences prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+                this.edtAddress.setText(prf.getString("IP", ""));
 
                 this.btnConnect.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -150,8 +152,7 @@ public class MainActivity extends AppCompatActivity {
                         task.execute();
 
                         btnConnect.setEnabled(false);
-            }
-        });
+                    }});
         btnConnect.callOnClick();
     }
 }

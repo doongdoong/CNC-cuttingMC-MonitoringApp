@@ -24,10 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
-        android:hint="서버의 주소를 입력하세요"
+        android:hint="http://255.255.255.255:55555"
         android:lines="1"
         android:singleLine="true"
-        android:text="http://210.125.29.221:443" />
+        android:maxLength="28"
+        android:text="http://" />
 
     <ImageView
         android:id="@+id/imageView"

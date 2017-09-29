@@ -19,15 +19,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="ID               : "/>
+            android:text="ID                : "/>
 
         <EditText
             android:id="@+id/edt_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
+            android:maxLength="25"
             android:text=""
-            android:hint="abcd12345@google.com"/>
+            android:hint="  abcd12345@google.com   "/>
     </LinearLayout>
 
     <LinearLayout
@@ -48,7 +49,8 @@
             android:singleLine="true"
             android:password="true"
             android:text=""
-            android:hint=" 비         밀         번         호 "/>
+            android:maxLength="16"
+            android:hint="                     "/>
     </LinearLayout>
 
     <Button
