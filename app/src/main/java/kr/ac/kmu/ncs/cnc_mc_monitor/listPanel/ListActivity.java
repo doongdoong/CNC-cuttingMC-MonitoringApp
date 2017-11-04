@@ -149,8 +149,23 @@ public class  ListActivity  extends Activity {
 
                 current = (int) (inflatedItem.getWorkload() & 0b1111111111111111);
                 total = (int) (inflatedItem.getWorkload() >> 16);
+                double d_current = (inflatedItem.getWorkload() & 0b1111111111111111);
+                double d_total = (inflatedItem.getWorkload() >> 16);
 
                 tvWorkload.setText(current + "/" + total);
+
+                try
+                {
+                    double progress = (d_current/d_total)*100;
+                    pbarWorkload.setVisibility(pbarWorkload.VISIBLE);
+                    pbarWorkload.setProgress((int)progress);
+                }
+                catch (Exception e)
+                {
+                    Log.d("progressbar", "out of range");
+                    pbarWorkload.setProgress(100);
+                }
+
 
             } catch (NullPointerException e){
                 return null;
