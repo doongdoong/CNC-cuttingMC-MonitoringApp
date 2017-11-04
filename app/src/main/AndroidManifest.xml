@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         >
         <activity android:name=".core.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,16 +22,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".core.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light"/>
+            android:theme="@style/Theme.AppCompat.Light"
+            android:screenOrientation="portrait"/>
         <activity android:name=".listPanel.ListActivity"
-            android:theme="@style/Theme.AppCompat.Light"/>
-        <activity android:name=".detailActivity.DetailActivity" />
+            android:theme="@style/Theme.AppCompat.Light"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".detailActivity.DetailActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".core.SignUpActivity"
-            android:theme="@style/Theme.AppCompat.Light"/>
+            android:theme="@style/Theme.AppCompat.Light"
+            android:screenOrientation="portrait"/>
         <activity android:name=".core.FindPasswdActivity"
-            android:theme="@style/Theme.AppCompat.Light"/>
+            android:theme="@style/Theme.AppCompat.Light"
+            android:screenOrientation="portrait"/>
         <activity android:name=".core.SettingActivity"
-            android:theme="@style/Theme.AppCompat.Light"/>
+            android:theme="@style/Theme.AppCompat.Light"
+            android:screenOrientation="portrait"/>
         <service android:name=".db.DbUpdateService"
             android:enabled="true"/>
         <service android:name=".FCM.MyFirebaseInstanceIDService">
