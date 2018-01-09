@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -27,6 +28,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // TODO: Handle FCM messages here.
         Log.d(TAG, "From: " + remoteMessage.getFrom());
+
+        // Check if message contains a data payload.
+        if (remoteMessage.getData().size() > 0) {
+            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            sendNotification(remoteMessage.getNotification());
+        }
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
@@ -61,6 +68,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG");
+        //PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE , "TAG");
+        wakelock.acquire(3000);
+
+        if(wakelock.isHeld())
+        {
+            wakelock.release();
+        }
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
