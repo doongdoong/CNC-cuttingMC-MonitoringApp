@@ -113,7 +113,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if(wakelock.isHeld())
         {
             wakelock.release();
-            Log.d(TAG, "Relsease");
+            Log.d(TAG, "Relsease!");
         }
     }
 }
