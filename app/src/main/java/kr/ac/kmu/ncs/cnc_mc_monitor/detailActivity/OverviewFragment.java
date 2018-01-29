@@ -212,14 +212,6 @@ public class OverviewFragment extends Fragment {
                     tv_depletion.setTextColor(Color.parseColor("#d1d1d1"));
                 }
 
-
-
-
-
-
-
-
-
                 current = (int) (mListMachineDataSet.get(i).getWorkload() & 0b1111111111111111);
                 total = (int) (mListMachineDataSet.get(i).getWorkload() >> 16);
 
