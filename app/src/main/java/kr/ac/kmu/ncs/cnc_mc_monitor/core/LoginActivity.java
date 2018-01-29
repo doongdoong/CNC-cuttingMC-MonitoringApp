@@ -1,10 +1,13 @@
 package kr.ac.kmu.ncs.cnc_mc_monitor.core;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -78,6 +81,42 @@ public class LoginActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                LoginActivity.this);
+
+        // 제목셋팅
+        alertDialogBuilder.setTitle("프로그램 종료");
+
+        // AlertDialog 셋팅
+        alertDialogBuilder
+                .setMessage("프로그램을 종료하시겠습니까?")
+                .setCancelable(false)
+                .setPositiveButton("종료",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(
+                                    DialogInterface dialog, int id) {
+                                // 프로그램을 종료한다
+                                ActivityCompat.finishAffinity(LoginActivity.this);
+                            }
+                        })
+                .setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(
+                                    DialogInterface dialog, int id) {
+                                // 다이얼로그를 취소한다
+                                dialog.cancel();
+                            }
+                        });
+
+        // 다이얼로그 생성
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // 다이얼로그 보여주기
+        alertDialog.show();
     }
 
     public void init() {

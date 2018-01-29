@@ -3,6 +3,7 @@ package kr.ac.kmu.ncs.cnc_mc_monitor.detailActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.MediaController;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
+import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
 
 /**
  * Created by kimsiyoung on 2018-01-03.
@@ -52,15 +54,14 @@ public class FullScreenMC  extends MediaController{
         fullScreen.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getContext(), CameraFragment.class);
+                Bundle bundle = new Bundle();   
 
                 if("y".equals(isFullScreen)){
-                    intent.putExtra("fullScreenInd", "");
+                    bundle.putString("fullScreenInd", "");
                 }else{
-                    intent.putExtra("fullScreenInd", "y");
+                    bundle.putString("fullScreenInd", "y");
                 }
-                ((Activity)getContext()).startActivity(intent);
+                CameraFragment.getInstance().setArguments(bundle);
             }
         });
     }

@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
                 this.edtAddress = (EditText)findViewById(R.id.edt_address);
                 this.btnConnect = (Button)findViewById(R.id.btn_connect);
-                SharedPreferences prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+                final SharedPreferences prf = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
                 this.edtAddress.setText(prf.getString("IP", ""));
 
                 this.btnConnect.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +147,10 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         Constants.SERVERADDRESS = new String(edtAddress.getText().toString());
+
+                        SharedPreferences.Editor editor = prf.edit();
+                        editor.putString("IP", Constants.SERVERADDRESS);
+                        editor.commit();
 
                         task = new HTTPConnectionTask();
                         task.execute();

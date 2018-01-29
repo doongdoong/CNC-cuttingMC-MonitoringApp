@@ -67,7 +67,6 @@ public class DetailActivity extends FragmentActivity {
                 getActionBar().setSelectedNavigationItem(position);
             }
         });
-
        changeActionBarToTabBar();
     }
 
