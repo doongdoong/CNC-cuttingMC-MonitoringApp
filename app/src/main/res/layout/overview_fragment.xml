@@ -20,14 +20,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="장비명 :                    "/>
+            android:text="장비명 :                    "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -42,14 +44,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="장비 윤활유 상태 :     "/>
+            android:text="장비 윤활유 상태 :     "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_lubricant_machine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -64,14 +68,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="톱날 윤활유 상태 :     "/>
+            android:text="톱날 윤활유 상태 :     "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_lubricant_saw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -86,14 +92,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="메인 공기압 상태 :     "/>
+            android:text="메인 공기압 상태 :     "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_pressure_air_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -108,14 +116,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="윤활유 압력 상태 :     "/>
+            android:text="윤활유 압력 상태 :     "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_pressure_oil_hydraulic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -130,14 +140,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="절단 서보 모터 상태 : "/>
+            android:text="절단 서보 모터 상태 : "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_servo_cut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -152,14 +164,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="이송 서보 상태 :         "/>
+            android:text="이송 서보 상태 :         "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_servo_transfer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -174,14 +188,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="스핀들 모터 상태 :      "/>
+            android:text="스핀들 모터 상태 :      "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_spindle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -196,14 +212,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="안전 도어 상태 :         "/>
+            android:text="안전 도어 상태 :         "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_safety_door"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -218,14 +236,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="소재 여유량 상태 :      "/>
+            android:text="소재 여유량 상태 :      "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_depletion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -240,14 +260,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="작업량 :                     "/>
+            android:text="작업량 :                     "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_workload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -262,14 +284,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="마지막 갱신시간 : "/>
+            android:text="마지막 갱신시간 : "
+            android:textColor="#d1d1d1"/>
 
         <TextView
             android:id="@+id/tv_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="          "/>
+            android:text="          "
+            android:textColor="#d1d1d1"/>
     </LinearLayout>
 
 </LinearLayout>

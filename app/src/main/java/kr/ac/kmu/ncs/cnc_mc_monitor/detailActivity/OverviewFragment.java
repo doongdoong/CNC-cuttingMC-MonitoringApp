@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -129,15 +130,95 @@ public class OverviewFragment extends Fragment {
         for(int i = 0 ; i < mListMachineDataSet.size() ; i++) {
             if(Integer.toString(mListMachineDataSet.get(i).getId()).equals(machineID)) {
                 tv_ID.setText("" + mListMachineDataSet.get(i).getId());
-                tv_lubricant_machine.setText("" + mListMachineDataSet.get(i).getLubricant_machine());
-                tv_lubricant_saw.setText("" + mListMachineDataSet.get(i).getLubricant_saw());
-                tv_pressure_air_main.setText("" + mListMachineDataSet.get(i).getPressure_air_main());
-                tv_pressure_oil_hydraulic.setText("" + mListMachineDataSet.get(i).getPressure_oil_hydraulic());
-                tv_servo_cut.setText("" + mListMachineDataSet.get(i).getServo_cut());
-                tv_servo_transfer.setText("" + mListMachineDataSet.get(i).getServo_transfer());
-                tv_spindle.setText("" + mListMachineDataSet.get(i).getSpindle());
-                tv_safety_door.setText("" + mListMachineDataSet.get(i).getSafety_door());
-                tv_depletion.setText("" + mListMachineDataSet.get(i).getDepletion());
+
+                if(mListMachineDataSet.get(i).getLubricant_machine() == true) {
+                    tv_lubricant_machine.setText("장비 이상");
+                    tv_lubricant_machine.setTextColor(Color.RED);
+                }
+                else {
+                    tv_lubricant_machine.setText("정상 작동");
+                    tv_lubricant_machine.setTextColor(Color.parseColor("#d1d1d1"));
+                }
+
+                if(mListMachineDataSet.get(i).getLubricant_saw() == true) {
+                    tv_lubricant_saw.setText("장비 이상");
+                    tv_lubricant_saw.setTextColor(Color.RED);
+                }
+                else {
+                    tv_lubricant_saw.setText("정상 작동");
+                    tv_lubricant_saw.setTextColor(Color.parseColor("#d1d1d1"));
+                }
+
+                if(mListMachineDataSet.get(i).getPressure_air_main() == true) {
+                    tv_pressure_air_main.setText("장비 이상");
+                    tv_pressure_air_main.setTextColor(Color.RED);
+                }
+                else {
+                    tv_pressure_air_main.setText("정상 작동");
+                    tv_pressure_air_main.setTextColor(Color.parseColor("#d1d1d1"));
+                }
+
+                if(mListMachineDataSet.get(i).getPressure_oil_hydraulic() == true) {
+                    tv_pressure_oil_hydraulic.setText("장비 이상");
+                    tv_pressure_oil_hydraulic.setTextColor(Color.RED);
+                }
+                else {
+                    tv_pressure_oil_hydraulic.setText("정상 작동");
+                    tv_pressure_oil_hydraulic.setTextColor(Color.parseColor("#d1d1d1"));
+                }
+
+                if(mListMachineDataSet.get(i).getServo_cut() == true) {
+                    tv_servo_cut.setText("장비 이상");
+                    tv_servo_cut.setTextColor(Color.RED);
+                }
+                else {
+                    tv_servo_cut.setText("정상 작동");
+                    tv_servo_cut.setTextColor(Color.parseColor("#d1d1d1"));
+                }
+
+                if(mListMachineDataSet.get(i).getServo_transfer() == true) {
+                    tv_servo_transfer.setText("장비 이상");
+                    tv_servo_transfer.setTextColor(Color.RED);
+                }
+                else {
+                    tv_servo_transfer.setText("정상 작동");
+                    tv_servo_transfer.setTextColor(Color.parseColor("#d1d1d1"));
+                }
+
+                if(mListMachineDataSet.get(i).getSpindle() == true) {
+                    tv_spindle.setText("장비 이상");
+                    tv_spindle.setTextColor(Color.RED);
+                }
+                else {
+                    tv_spindle.setText("정상 작동");
+                    tv_spindle.setTextColor(Color.parseColor("#d1d1d1"));
+                }
+
+                if(mListMachineDataSet.get(i).getSafety_door() == true) {
+                    tv_safety_door.setText("장비 이상");
+                    tv_safety_door.setTextColor(Color.RED);
+                }
+                else {
+                    tv_safety_door.setText("정상 작동");
+                    tv_safety_door.setTextColor(Color.parseColor("#d1d1d1"));
+                }
+
+                if(mListMachineDataSet.get(i).getDepletion() == true) {
+                    tv_depletion.setText("장비 이상");
+                    tv_depletion.setTextColor(Color.RED);
+                }
+                else {
+                    tv_depletion.setText("정상 작동");
+                    tv_depletion.setTextColor(Color.parseColor("#d1d1d1"));
+                }
+
+
+
+
+
+
+
+
 
                 current = (int) (mListMachineDataSet.get(i).getWorkload() & 0b1111111111111111);
                 total = (int) (mListMachineDataSet.get(i).getWorkload() >> 16);
