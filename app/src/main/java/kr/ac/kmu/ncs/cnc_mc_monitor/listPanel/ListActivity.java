@@ -85,13 +85,13 @@ public class  ListActivity  extends Activity {
     protected void db_update() {
         if(mListItems.size() > 0) {
             for(int i = 0 ; i < mListMachineDataSet.size() ; i++) {
-                mListItems.get(i).update(mListMachineDataSet.get(i).getId(), mListMachineDataSet.get(i).getWorkload(), Constants.drawableToBitmap(getResources(), R.drawable.android_logo));
+                mListItems.get(i).update(mListMachineDataSet.get(i).getId(), mListMachineDataSet.get(i).getTotal_Workload(), mListMachineDataSet.get(i).getCurrent_Workload(), Constants.drawableToBitmap(getResources(), R.drawable.android_logo));
             }
         }
 
         else {
             for(int i = 0 ; i < mListMachineDataSet.size() ; i++) {
-                mListItems.add(new ListItem(mListMachineDataSet.get(i).getId(), mListMachineDataSet.get(i).getWorkload(), Constants.drawableToBitmap(getResources(), R.drawable.android_logo)));
+                mListItems.add(new ListItem(mListMachineDataSet.get(i).getId(), mListMachineDataSet.get(i).getTotal_Workload(), mListMachineDataSet.get(i).getCurrent_Workload(), Constants.drawableToBitmap(getResources(), R.drawable.android_logo)));
             }
         }
         listAdapter.notifyDataSetChanged();
@@ -147,10 +147,10 @@ public class  ListActivity  extends Activity {
                 imgThumnail.setImageBitmap(inflatedItem.getThumnail());
                 tvTitle.setText("#" + inflatedItem.getMachineID());
 
-                current = (int) (inflatedItem.getWorkload() & 0b1111111111111111);
-                total = (int) (inflatedItem.getWorkload() >> 16);
-                double d_current = (inflatedItem.getWorkload() & 0b1111111111111111);
-                double d_total = (inflatedItem.getWorkload() >> 16);
+                current = (int) (inflatedItem.getCurrent_Workload());
+                total = (int) (inflatedItem.getTotal_Workload());
+                double d_current = (inflatedItem.getCurrent_Workload());
+                double d_total = (inflatedItem.getTotal_Workload());
 
                 tvWorkload.setText(current + "/" + total);
 

@@ -54,7 +54,7 @@ public class FullScreenMC  extends MediaController{
         fullScreen.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();   
+                Bundle bundle = new Bundle();
 
                 if("y".equals(isFullScreen)){
                     bundle.putString("fullScreenInd", "");

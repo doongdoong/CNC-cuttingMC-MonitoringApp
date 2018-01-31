@@ -44,7 +44,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 Constants.DB_SPINDLE + " TEXT, " +
                 Constants.DB_SAFETY_DOOR + " TEXT, " +
                 Constants.DB_DEPLETION + " TEXT, " +
-                Constants.DB_WORKLOAD + " TEXT, " +
+                Constants.DB_TOTAL_WORKLOAD + " TEXT, " +
+                Constants.DB_CURRENT_WORKLOAD + " TEXT, " +
                 Constants.DB_TIMESTAMP + " DATETIME" +
                 ");";
         db.execSQL(query);
@@ -55,12 +56,13 @@ public class DbHelper extends SQLiteOpenHelper {
                                  String pressure_air_main, String pressure_oil_hydraulic,
                                  String servo_cut, String servo_transfer,
                                  String spindle, String safety_door,
-                                 String depletion, String workload, String timestamp) {
+                                 String depletion, String total_workload, String current_workload, String timestamp) {
         SQLiteDatabase db = getWritableDatabase();
 
         Log.d(getClass().getSimpleName(), id);
         Log.d(getClass().getSimpleName(), timestamp);
-        Log.d(getClass().getSimpleName(), workload);
+        Log.d(getClass().getSimpleName(), total_workload);
+        Log.d(getClass().getSimpleName(), current_workload);
 
         try {
             db.execSQL("INSERT OR REPLACE INTO " + machineTable + " VALUES(" +
@@ -74,7 +76,8 @@ public class DbHelper extends SQLiteOpenHelper {
                     "'" + spindle + "', " +
                     "'" + safety_door + "', " +
                     "'" + depletion + "', " +
-                    "'" + workload + "', " +
+                    "'" + total_workload + "', " +
+                    "'" + current_workload + "', " +
                     "'" + timestamp + "'" +
                     ");");
         } catch (SQLiteConstraintException ex) {

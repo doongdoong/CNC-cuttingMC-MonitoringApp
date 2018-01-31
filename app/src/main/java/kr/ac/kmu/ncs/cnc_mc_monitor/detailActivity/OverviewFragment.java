@@ -43,7 +43,8 @@ public class OverviewFragment extends Fragment {
     private String spindle;
     private String safety_door;
     private String depletion;
-    private String workload;
+    private String total_workload;
+    private String current_workload;
     private int current;
     private int total;
 
@@ -212,8 +213,8 @@ public class OverviewFragment extends Fragment {
                     tv_depletion.setTextColor(Color.parseColor("#d1d1d1"));
                 }
 
-                current = (int) (mListMachineDataSet.get(i).getWorkload() & 0b1111111111111111);
-                total = (int) (mListMachineDataSet.get(i).getWorkload() >> 16);
+                current = (int) (mListMachineDataSet.get(i).getCurrent_Workload());
+                total = (int) (mListMachineDataSet.get(i).getTotal_Workload());
 
                 tv_workload.setText(current + "/" + total);
 

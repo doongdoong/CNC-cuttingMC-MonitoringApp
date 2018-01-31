@@ -6,13 +6,15 @@
 
     <VideoView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:id="@+id/videoview"
         android:layout_gravity="center" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1.5"
         android:id="@+id/lv_video"></ListView>
 
 </LinearLayout>

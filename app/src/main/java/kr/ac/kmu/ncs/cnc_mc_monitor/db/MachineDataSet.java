@@ -18,12 +18,13 @@ public class MachineDataSet implements Serializable{
     private boolean spindle;
     private boolean safety_door;
     private boolean depletion;
-    private long workload;
+    private long total_workload;
+    private long current_workload;
     private long timestamp;
 
     private MachineDataSet(){}
 
-    public MachineDataSet(int id, boolean lubricant_machine, boolean lubricant_saw, boolean pressure_air_main, boolean pressure_oil_hydraulic, boolean servo_cut, boolean servo_transfer, boolean spindle, boolean safety_door, boolean depletion, long workload, int timestamp) {
+    public MachineDataSet(int id, boolean lubricant_machine, boolean lubricant_saw, boolean pressure_air_main, boolean pressure_oil_hydraulic, boolean servo_cut, boolean servo_transfer, boolean spindle, boolean safety_door, boolean depletion, long total_workload, long current_workload, int timestamp) {
         this.id = id;
         this.lubricant_machine = lubricant_machine;
         this.lubricant_saw = lubricant_saw;
@@ -34,7 +35,8 @@ public class MachineDataSet implements Serializable{
         this.spindle = spindle;
         this.safety_door = safety_door;
         this.depletion = depletion;
-        this.workload = workload;
+        this.total_workload = total_workload;
+        this.current_workload = current_workload;
         this.timestamp = timestamp;
     }
 
@@ -49,7 +51,8 @@ public class MachineDataSet implements Serializable{
         spindle = in.readByte() != 0;
         safety_door = in.readByte() != 0;
         depletion = in.readByte() != 0;
-        workload = in.readLong();
+        total_workload = in.readLong();
+        current_workload = in.readLong();
         timestamp = in.readInt();
     }
 /*
@@ -65,7 +68,7 @@ public class MachineDataSet implements Serializable{
         }
     };
 */
-    public void update(int id, boolean lubricant_machine, boolean lubricant_saw, boolean pressure_air_main, boolean pressure_oil_hydraulic, boolean servo_cut, boolean servo_transfer, boolean spindle, boolean safety_door, boolean depletion, long workload, int timestamp) {
+    public void update(int id, boolean lubricant_machine, boolean lubricant_saw, boolean pressure_air_main, boolean pressure_oil_hydraulic, boolean servo_cut, boolean servo_transfer, boolean spindle, boolean safety_door, boolean depletion, long total_workload, long current_workload, int timestamp) {
         this.id = id;
         this.lubricant_machine = lubricant_machine;
         this.lubricant_saw = lubricant_saw;
@@ -76,7 +79,8 @@ public class MachineDataSet implements Serializable{
         this.spindle = spindle;
         this.safety_door = safety_door;
         this.depletion = depletion;
-        this.workload = workload;
+        this.total_workload = total_workload;
+        this.current_workload = current_workload;
         this.timestamp = timestamp;
     }
 
@@ -160,13 +164,15 @@ public class MachineDataSet implements Serializable{
         this.depletion = depletion;
     }
 
-    public long getWorkload() {
-        return workload;
+    public long getTotal_Workload() { return total_workload; }
+
+    public void setTotal_Workload(long total_workload) {
+        this.total_workload = total_workload;
     }
 
-    public void setWorkload(long workload) {
-        this.workload = workload;
-    }
+    public long getCurrent_Workload() { return current_workload; }
+
+    public void setCurrent_Workload(long current_workload) { this.current_workload = current_workload; }
 
     public long getTimestamp() {
         return timestamp;
