@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -60,6 +62,8 @@ public class CameraFragment extends Fragment{
     private MediaController mediacontroller;
     private ArrayList<String> titleList;
     private Comparator<String> cmpDesc;
+    private int width;
+    private int height;
 
     /**
      * Singleton pattern
@@ -84,6 +88,11 @@ public class CameraFragment extends Fragment{
             getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+
+        DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
+        width = dm.widthPixels;
+        height = dm.heightPixels;
+
 
         view = inflater.inflate(R.layout.camera_fragment, container, false);
         videoview = (VideoView) view.findViewById(R.id.videoview);
@@ -150,6 +159,7 @@ public class CameraFragment extends Fragment{
 
         videoview.setVideoURI(builder.build(), map);
         videoview.requestFocus();
+        videoview.setLayoutParams(new LinearLayout.LayoutParams(width,height+50));
         videoview.start();
 
         videoview.setOnErrorListener(new MediaPlayer.OnErrorListener() {
