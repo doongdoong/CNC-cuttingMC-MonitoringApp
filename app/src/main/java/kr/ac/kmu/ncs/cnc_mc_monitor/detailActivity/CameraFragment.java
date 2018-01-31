@@ -159,7 +159,7 @@ public class CameraFragment extends Fragment{
 
         videoview.setVideoURI(builder.build(), map);
         videoview.requestFocus();
-        videoview.setLayoutParams(new LinearLayout.LayoutParams(width,height+50));
+        videoview.setLayoutParams(new LinearLayout.LayoutParams(width, height));
         videoview.start();
 
         videoview.setOnErrorListener(new MediaPlayer.OnErrorListener() {
