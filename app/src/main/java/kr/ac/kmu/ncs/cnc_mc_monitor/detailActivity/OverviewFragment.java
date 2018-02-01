@@ -200,7 +200,7 @@ public class OverviewFragment extends Fragment {
                     tv_safety_door.setTextColor(Color.RED);
                 }
                 else {
-                    tv_safety_door.setText("정상 작동'");
+                    tv_safety_door.setText("정상 작동");
                     tv_safety_door.setTextColor(Color.parseColor("#d1d1d1"));
                 }
 
