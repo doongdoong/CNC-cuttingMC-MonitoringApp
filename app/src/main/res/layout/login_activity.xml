@@ -28,7 +28,7 @@
             android:singleLine="true"
             android:maxLength="25"
             android:text=""
-            android:hint="  abcd12345@google.com   "/>
+            android:hint="아이디                                 "/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +50,7 @@
             android:password="true"
             android:text=""
             android:maxLength="16"
-            android:hint="                     "/>
+            android:hint="패스워드            "/>
     </LinearLayout>
 
     <Button

@@ -22,21 +22,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".core.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
         <activity android:name=".listPanel.ListActivity"
-            android:theme="@style/Theme.AppCompat.Light"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
         <activity android:name=".detailActivity.DetailActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".core.SignUpActivity"
-            android:theme="@style/Theme.AppCompat.Light"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
         <activity android:name=".core.FindPasswdActivity"
-            android:theme="@style/Theme.AppCompat.Light"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
         <activity android:name=".core.SettingActivity"
-            android:theme="@style/Theme.AppCompat.Light"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
         <service android:name=".db.DbUpdateService"
             android:enabled="true"/>
