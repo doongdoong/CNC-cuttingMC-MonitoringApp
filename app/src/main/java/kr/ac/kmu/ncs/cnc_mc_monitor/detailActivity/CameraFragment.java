@@ -142,7 +142,7 @@ public class CameraFragment extends Fragment{
 
         Log.d("selectedVideoTitle", videoTitle);
 
-        Toast.makeText(getContext(), "Loading video. Please wait", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "녹화 영상을 로딩하고 있습니다.", Toast.LENGTH_LONG).show();
 
         builder = new Uri.Builder();
         builder.scheme("http")
@@ -262,7 +262,7 @@ public class CameraFragment extends Fragment{
 
         protected void onProgressUpdate(Integer... value) {
             if(value[0]==0)
-                Toast.makeText(getContext(), "영상 목록 로딩에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "영상 목록을 가져오는데 실패하였습니다.", Toast.LENGTH_SHORT).show();
         }
 
         public Boolean list() {
@@ -342,7 +342,7 @@ public class CameraFragment extends Fragment{
 
                             //prmt 수정해야함
                             for(int i=0 ; i<titleList.size(); i++) {
-                                videoList.add(new VideoListItem(machineID, titleList.get(i).substring(1, titleList.get(i).length()-1), Constants.drawableToBitmap(getResources(), R.drawable.android_logo)));
+                                videoList.add(new VideoListItem(machineID, titleList.get(i).substring(1, titleList.get(i).length()-1), Constants.drawableToBitmap(getResources(), R.drawable.ic_videocam_white_24dp)));
                             }
                         }
 

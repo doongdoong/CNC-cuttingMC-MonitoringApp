@@ -17,7 +17,8 @@
         android:id="@+id/tv_machineID"
         android:layout_marginBottom="30dp"
         android:text="머신 이름"
-        android:layout_toRightOf="@id/img_thumnail" />
+        android:layout_toRightOf="@id/img_thumnail"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,5 +26,6 @@
         android:id="@+id/tv_videoTitle"
         android:text="영상 제목"
         android:layout_toRightOf="@id/img_thumnail"
-        android:layout_below="@id/tv_machineID"/>
+        android:layout_below="@id/tv_machineID"
+        android:textColor="#FFFFFF"/>
 </RelativeLayout>
