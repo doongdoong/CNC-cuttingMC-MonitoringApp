@@ -37,7 +37,7 @@ public class SettingActivity extends ActionBarActivity {
         this.btn_save = (Button) findViewById(R.id.btn_save);
 
         edt_IP.setText(prf.getString("IP", ""));
-        edt_renewed_data_interval.setText(prf.getString("rnw_data_interval", "2"));
+        edt_renewed_data_interval.setText(prf.getString("rnw_data_interval", "1"));
 
         this.btn_save.setOnClickListener(new View.OnClickListener() {
             @Override

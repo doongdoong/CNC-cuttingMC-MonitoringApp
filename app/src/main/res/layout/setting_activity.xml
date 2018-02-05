@@ -21,7 +21,7 @@
 
         <EditText
             android:id="@+id/edt_IP"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="http://255.255.255.255:55555"
             android:maxLength="28"
@@ -40,12 +40,12 @@
 
         <EditText
             android:id="@+id/edt_renewed_data_interval"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:inputType="number"
             android:hint="000"
-            android:gravity="right"
+            android:gravity="center"
             android:maxLength="3"/>
     </LinearLayout>
 

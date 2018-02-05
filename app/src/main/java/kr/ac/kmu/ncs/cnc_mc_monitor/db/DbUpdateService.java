@@ -83,7 +83,7 @@ public class DbUpdateService extends Service {
                 broadcastIntent(result);
 
                 try{
-                    Thread.sleep(Integer.parseInt(prf.getString("rnw_data_interval", "2"))*1000);
+                    Thread.sleep(Integer.parseInt(prf.getString("rnw_data_interval", "1"))*1000);
                 }
                 catch (Exception e){
                     Log.d(getClass().getSimpleName(), "sleep 에러");

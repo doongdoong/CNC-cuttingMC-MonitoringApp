@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private HTTPConnectionTask task;
     private HttpURLConnection conn;
     private String fcm_token;
+    private ImageView imageView;
+    private Animation animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
         fcm_token = prf.getString("fcm_token", "");
 
         Log.d("fcm_token", fcm_token);
+
+        imageView = (ImageView) findViewById(R.id.img_logo);
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotation);
+        imageView.setAnimation(animation);
 
         init();
     }

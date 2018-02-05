@@ -3,61 +3,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#2b579a"
     tools:context=".core.MainActivity">
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center|bottom"
+        android:layout_weight="1">
 
         <ImageView
             android:id="@+id/img_logo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_toys_black_24dp" />
+            android:src="@drawable/ic_toys_white_24dp_xxhdpi"
+            android:elevation="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="25dp"
+            android:typeface="sans"
+            android:textStyle="bold"
             android:text="CNC_MC_Monitoring" />
+
+        <Button
+            android:id="@+id/btn_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
+            android:text="연결하기"/>
     </LinearLayout>
 
-
-    <EditText
-        android:id="@+id/edt_address"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        android:hint="http://255.255.255.255:55555"
-        android:lines="1"
-        android:singleLine="true"
-        android:maxLength="28"
-        android:text="http://" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="1.5">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IP:"
+            android:textColor="#FFFFFF"/>
 
-    <Button
-        android:id="@+id/btn_connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
-        android:text="연결하기" />
-
-
+        <EditText
+            android:id="@+id/edt_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="http://255.255.255.255:55555"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:lines="1"
+            android:singleLine="true"
+            android:maxLength="28"
+            android:text="http://"/>
+    </LinearLayout>
 </LinearLayout>
