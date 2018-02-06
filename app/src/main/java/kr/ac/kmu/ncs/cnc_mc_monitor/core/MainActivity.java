@@ -150,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
                 this.btnConnect.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        imageView.startAnimation(animation);
+
                         if((edtAddress.getText().toString()).equals("")) {
                             Toast.makeText(getApplicationContext(), "서버의 주소를 입력하세요",Toast.LENGTH_SHORT).show();
                             return;
@@ -166,6 +168,6 @@ public class MainActivity extends AppCompatActivity {
 
                         btnConnect.setEnabled(false);
                     }});
-        btnConnect.callOnClick();
+                btnConnect.callOnClick();
     }
 }
