@@ -59,7 +59,6 @@ public class  ListActivity  extends Activity {
 
     @Override
     public void onBackPressed() {
-        Log.d("onBackPressed", "실행이 되나니뇨?");
         Constants.TOKEN = "";
         stopService(new Intent(this, DbUpdateService.class));
         unregisterReceiver(receiver);
