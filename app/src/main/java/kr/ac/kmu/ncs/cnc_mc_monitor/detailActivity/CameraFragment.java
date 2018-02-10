@@ -1,6 +1,7 @@
 package kr.ac.kmu.ncs.cnc_mc_monitor.detailActivity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -44,6 +45,8 @@ import java.util.StringTokenizer;
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by NCS-KSW on 2017-07-20.
  */
@@ -59,13 +62,13 @@ public class CameraFragment extends Fragment{
     private View view;
     private VideoView videoview;
     private String machineID;
-    private String fullScreen;
     private MediaController mediacontroller;
     private ArrayList<String> titleList;
     private Comparator<String> cmpDesc;
     private int width;
     private int height;
     private Handler handler;
+    private SharedPreferences prf;
 
     /**
      * Singleton pattern
@@ -88,6 +91,8 @@ public class CameraFragment extends Fragment{
         width = dm.widthPixels;
         height = dm.heightPixels;
 
+        prf = getActivity().getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+
         view = inflater.inflate(R.layout.camera_fragment, container, false);
         videoview = (VideoView) view.findViewById(R.id.videoview);
         lvVideo = (ListView) view.findViewById(R.id.lv_video);
@@ -97,13 +102,6 @@ public class CameraFragment extends Fragment{
         mediacontroller.setMediaPlayer(videoview);
 
         init();
-
-        try {
-            Thread.sleep(300);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return view;
     }
@@ -130,7 +128,7 @@ public class CameraFragment extends Fragment{
     }
 
     public void loadVideo(final String tempVideoTitle) {
-        String urlStr = Constants.SERVERADDRESS;
+        String urlStr = prf.getString("IP", "");
 
         String videoTitle = tempVideoTitle.substring(1,tempVideoTitle.length()-1);
 
@@ -264,7 +262,7 @@ public class CameraFragment extends Fragment{
             StringBuilder output = new StringBuilder();
             InputStream is;
             ByteArrayOutputStream baos;
-            String urlStr = Constants.SERVERADDRESS;
+            String urlStr = prf.getString("IP", "");
             Boolean result = false;
 
             try {

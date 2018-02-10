@@ -242,7 +242,7 @@ public class LoginActivity extends AppCompatActivity {
             StringBuilder output = new StringBuilder();
             InputStream is;
             ByteArrayOutputStream baos;
-            String urlStr = Constants.SERVERADDRESS;
+            String urlStr = prf.getString("IP", "");
             Boolean result = false;
 
             try {
@@ -317,7 +317,7 @@ public class LoginActivity extends AppCompatActivity {
             StringBuilder output = new StringBuilder();
             InputStream is;
             ByteArrayOutputStream baos;
-            String urlStr = Constants.SERVERADDRESS;
+            String urlStr = prf.getString("IP", "");
             Boolean result = false;
 
             try {
@@ -377,7 +377,7 @@ public class LoginActivity extends AppCompatActivity {
             StringBuilder output = new StringBuilder();
             InputStream is;
             ByteArrayOutputStream baos;
-            String urlStr = Constants.SERVERADDRESS;
+            String urlStr = prf.getString("IP", "");
             Boolean result = false;
 
             try {
@@ -453,7 +453,7 @@ public class LoginActivity extends AppCompatActivity {
             StringBuilder output = new StringBuilder();
             InputStream is;
             ByteArrayOutputStream baos;
-            String urlStr = Constants.SERVERADDRESS;
+            String urlStr = prf.getString("IP", "");
             Boolean result = false;
 
             try {

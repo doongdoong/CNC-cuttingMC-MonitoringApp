@@ -104,7 +104,7 @@ public class DbUpdateService extends Service {
             StringBuilder output = new StringBuilder();
             InputStream is;
             ByteArrayOutputStream baos;
-            String urlStr = Constants.SERVERADDRESS;
+            String urlStr = prf.getString("IP", "");
             Boolean result = false;
             check_temination = true;
 
