@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
@@ -64,6 +65,7 @@ public class CameraFragment extends Fragment{
     private Comparator<String> cmpDesc;
     private int width;
     private int height;
+    private Handler handler;
 
     /**
      * Singleton pattern
@@ -106,8 +108,8 @@ public class CameraFragment extends Fragment{
         return view;
     }
 
-
     private void init() {
+        handler = new Handler();
         titleList = new ArrayList<String>();
         videoList = new ArrayList<VideoListItem>();
         videoListAdapter = new VideoListAdapter();
@@ -217,6 +219,7 @@ public class CameraFragment extends Fragment{
                 imgThumnail.setImageBitmap(inflatedItem.getThumnail());
                 tvMachineID.setText("#" + inflatedItem.getMachineID());
                 tvVideoTitle.setText(inflatedItem.getTitle());
+
             } catch (Exception e) {
                e.printStackTrace();
                 return null;
@@ -332,10 +335,20 @@ public class CameraFragment extends Fragment{
 
                             Collections.sort(titleList, cmpDesc);
 
-                            //prmt 수정해야함
-                            for(int i=0 ; i<titleList.size(); i++) {
-                                videoList.add(new VideoListItem(machineID, titleList.get(i).substring(1, titleList.get(i).length()-1), Constants.drawableToBitmap(getResources(), R.drawable.ic_videocam_black_24dp)));
-                            }
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    handler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            for(int i=0 ; i<titleList.size(); i++) {
+                                                videoList.add(new VideoListItem(machineID, titleList.get(i).substring(1, titleList.get(i).length()-1), Constants.drawableToBitmap(getResources(), R.drawable.ic_videocam_black_24dp)));
+                                            }
+                                            videoListAdapter.notifyDataSetChanged();
+                                        }
+                                    }) ;
+                                }
+                            }).start();
                         }
 
                         is.close();

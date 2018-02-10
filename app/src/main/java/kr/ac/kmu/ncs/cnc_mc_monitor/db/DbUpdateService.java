@@ -58,8 +58,6 @@ public class DbUpdateService extends Service {
     public void onDestroy() {
         Log.d(getClass().getSimpleName(), "DB Service가 중지되었습니다.");
         // 스레드 종료
-
-
     }
 
     class RefreshTask extends AsyncTask<Integer, Integer, Integer> {

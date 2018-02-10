@@ -38,6 +38,11 @@ public class DetailActivity extends FragmentActivity {
         init();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     private void getDataFromIntent(){
         Intent intent = getIntent();
         machineID = intent.getStringExtra(Constants.INTENT_KEY_MACHINE_ID);
