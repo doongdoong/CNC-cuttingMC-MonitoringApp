@@ -82,22 +82,14 @@ public class CameraFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDataFromIntent();
 
-        Bundle extra = getArguments();
-        fullScreen =  extra.getString("fullScreenInd");
-        if("y".equals(fullScreen)){
-            getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-
         DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
         width = dm.widthPixels;
         height = dm.heightPixels;
 
-
         view = inflater.inflate(R.layout.camera_fragment, container, false);
         videoview = (VideoView) view.findViewById(R.id.videoview);
         lvVideo = (ListView) view.findViewById(R.id.lv_video);
-        mediacontroller = new FullScreenMC(getContext());
+        mediacontroller = new MediaController(getContext());
         mediacontroller.setAnchorView(videoview);
         videoview.setMediaController(mediacontroller);
         mediacontroller.setMediaPlayer(videoview);
