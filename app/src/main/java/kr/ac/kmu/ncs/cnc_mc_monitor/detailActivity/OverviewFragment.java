@@ -138,7 +138,7 @@ public class OverviewFragment extends Fragment {
                 }
                 else {
                     tv_lubricant_machine.setText("정상 작동");
-                    tv_lubricant_machine.setTextColor(Color.parseColor("#d1d1d1"));
+                    tv_lubricant_machine.setTextColor(Color.parseColor("#000000"));
                 }
 
                 if(mListMachineDataSet.get(i).getLubricant_saw() == true) {
@@ -147,7 +147,7 @@ public class OverviewFragment extends Fragment {
                 }
                 else {
                     tv_lubricant_saw.setText("정상 작동");
-                    tv_lubricant_saw.setTextColor(Color.parseColor("#d1d1d1"));
+                    tv_lubricant_saw.setTextColor(Color.parseColor("#000000"));
                 }
 
                 if(mListMachineDataSet.get(i).getPressure_air_main() == true) {
@@ -156,7 +156,7 @@ public class OverviewFragment extends Fragment {
                 }
                 else {
                     tv_pressure_air_main.setText("정상 작동");
-                    tv_pressure_air_main.setTextColor(Color.parseColor("#d1d1d1"));
+                    tv_pressure_air_main.setTextColor(Color.parseColor("#000000"));
                 }
 
                 if(mListMachineDataSet.get(i).getPressure_oil_hydraulic() == true) {
@@ -165,7 +165,7 @@ public class OverviewFragment extends Fragment {
                 }
                 else {
                     tv_pressure_oil_hydraulic.setText("정상 작동");
-                    tv_pressure_oil_hydraulic.setTextColor(Color.parseColor("#d1d1d1"));
+                    tv_pressure_oil_hydraulic.setTextColor(Color.parseColor("#000000"));
                 }
 
                 if(mListMachineDataSet.get(i).getServo_cut() == true) {
@@ -174,7 +174,7 @@ public class OverviewFragment extends Fragment {
                 }
                 else {
                     tv_servo_cut.setText("정상 작동");
-                    tv_servo_cut.setTextColor(Color.parseColor("#d1d1d1"));
+                    tv_servo_cut.setTextColor(Color.parseColor("#000000"));
                 }
 
                 if(mListMachineDataSet.get(i).getServo_transfer() == true) {
@@ -183,7 +183,7 @@ public class OverviewFragment extends Fragment {
                 }
                 else {
                     tv_servo_transfer.setText("정상 작동");
-                    tv_servo_transfer.setTextColor(Color.parseColor("#d1d1d1"));
+                    tv_servo_transfer.setTextColor(Color.parseColor("#000000"));
                 }
 
                 if(mListMachineDataSet.get(i).getSpindle() == true) {
@@ -192,7 +192,7 @@ public class OverviewFragment extends Fragment {
                 }
                 else {
                     tv_spindle.setText("정상 작동");
-                    tv_spindle.setTextColor(Color.parseColor("#d1d1d1"));
+                    tv_spindle.setTextColor(Color.parseColor("#000000"));
                 }
 
                 if(mListMachineDataSet.get(i).getSafety_door() == true) {
@@ -201,7 +201,7 @@ public class OverviewFragment extends Fragment {
                 }
                 else {
                     tv_safety_door.setText("정상 작동");
-                    tv_safety_door.setTextColor(Color.parseColor("#d1d1d1"));
+                    tv_safety_door.setTextColor(Color.parseColor("#000000"));
                 }
 
                 if(mListMachineDataSet.get(i).getDepletion() == true) {
@@ -210,7 +210,7 @@ public class OverviewFragment extends Fragment {
                 }
                 else {
                     tv_depletion.setText("정상 작동");
-                    tv_depletion.setTextColor(Color.parseColor("#d1d1d1"));
+                    tv_depletion.setTextColor(Color.parseColor("#000000"));
                 }
 
                 current = (int) (mListMachineDataSet.get(i).getCurrent_Workload());

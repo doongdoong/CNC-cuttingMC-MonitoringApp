@@ -342,7 +342,7 @@ public class CameraFragment extends Fragment{
 
                             //prmt 수정해야함
                             for(int i=0 ; i<titleList.size(); i++) {
-                                videoList.add(new VideoListItem(machineID, titleList.get(i).substring(1, titleList.get(i).length()-1), Constants.drawableToBitmap(getResources(), R.drawable.ic_videocam_white_24dp)));
+                                videoList.add(new VideoListItem(machineID, titleList.get(i).substring(1, titleList.get(i).length()-1), Constants.drawableToBitmap(getResources(), R.drawable.ic_videocam_black_24dp)));
                             }
                         }
 
