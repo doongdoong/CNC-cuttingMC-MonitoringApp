@@ -85,9 +85,9 @@ public class  ListActivity  extends Activity {
     protected void db_update() {
         if(mListItems.size() > 0) {
             for(int i = 0 ; i < mListMachineDataSet.size() ; i++) {
-                if(mListMachineDataSet.get(i).getLubricant_machine() == false || mListMachineDataSet.get(i).getLubricant_saw() == false || mListMachineDataSet.get(i).getPressure_air_main() == false || mListMachineDataSet.get(i).getPressure_oil_hydraulic() == false
-                        || mListMachineDataSet.get(i).getServo_cut() == false || mListMachineDataSet.get(i).getServo_transfer() == false || mListMachineDataSet.get(i).getSpindle() == false || mListMachineDataSet.get(i).getSafety_door() == false
-                        || mListMachineDataSet.get(i).getDepletion() == false) {
+                if(mListMachineDataSet.get(i).getLubricant_machine() == true || mListMachineDataSet.get(i).getLubricant_saw() == true || mListMachineDataSet.get(i).getPressure_air_main() == true || mListMachineDataSet.get(i).getPressure_oil_hydraulic() == true
+                        || mListMachineDataSet.get(i).getServo_cut() == true || mListMachineDataSet.get(i).getServo_transfer() == true || mListMachineDataSet.get(i).getSpindle() == true || mListMachineDataSet.get(i).getSafety_door() == true
+                        || mListMachineDataSet.get(i).getDepletion() == true) {
                     mListItems.get(i).update(mListMachineDataSet.get(i).getId(), mListMachineDataSet.get(i).getTotal_Workload(), mListMachineDataSet.get(i).getCurrent_Workload(), Constants.drawableToBitmap(getResources(), R.drawable.ic_wb_cloudy_black_24dp));
                 }
                 else {
@@ -99,9 +99,9 @@ public class  ListActivity  extends Activity {
 
         else {
             for(int i = 0 ; i < mListMachineDataSet.size() ; i++) {
-                if(mListMachineDataSet.get(i).getLubricant_machine() == false || mListMachineDataSet.get(i).getLubricant_saw() == false || mListMachineDataSet.get(i).getPressure_air_main() == false || mListMachineDataSet.get(i).getPressure_oil_hydraulic() == false
-                        || mListMachineDataSet.get(i).getServo_cut() == false || mListMachineDataSet.get(i).getServo_transfer() == false || mListMachineDataSet.get(i).getSpindle() == false || mListMachineDataSet.get(i).getSafety_door() == false
-                        || mListMachineDataSet.get(i).getDepletion() == false) {
+                if(mListMachineDataSet.get(i).getLubricant_machine() == true || mListMachineDataSet.get(i).getLubricant_saw() == true || mListMachineDataSet.get(i).getPressure_air_main() == true || mListMachineDataSet.get(i).getPressure_oil_hydraulic() == true
+                        || mListMachineDataSet.get(i).getServo_cut() == true || mListMachineDataSet.get(i).getServo_transfer() == true || mListMachineDataSet.get(i).getSpindle() == true || mListMachineDataSet.get(i).getSafety_door() == true
+                        || mListMachineDataSet.get(i).getDepletion() == true) {
                     mListItems.add(new ListItem(mListMachineDataSet.get(i).getId(), mListMachineDataSet.get(i).getTotal_Workload(), mListMachineDataSet.get(i).getCurrent_Workload(), Constants.drawableToBitmap(getResources(), R.drawable.ic_wb_cloudy_black_24dp)));
                 }
                 else {

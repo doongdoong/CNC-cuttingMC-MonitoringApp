@@ -45,10 +45,11 @@ public class OverviewFragment extends Fragment {
     private String depletion;
     private String total_workload;
     private String current_workload;
+
     private int current;
     private int total;
 
-    private OverviewFragment(){
+    public OverviewFragment(){  //private?
     }
 
     public static OverviewFragment getInstance(){
@@ -75,6 +76,8 @@ public class OverviewFragment extends Fragment {
     private TextView tv_spindle;
     private TextView tv_safety_door;
     private TextView tv_depletion;
+    private TextView tv_emission_barrel;
+    private TextView tv_yield_saw;
     private TextView tv_workload;
     private TextView tv_timestamp;
 
@@ -100,6 +103,8 @@ public class OverviewFragment extends Fragment {
         tv_spindle = (TextView) view.findViewById(R.id.tv_spindle);
         tv_safety_door = (TextView) view.findViewById(R.id.tv_safety_door);
         tv_depletion = (TextView) view.findViewById(R.id.tv_depletion);
+        tv_emission_barrel = (TextView) view.findViewById(R.id.tv_emission_barrel);
+        tv_yield_saw = (TextView) view.findViewById(R.id.tv_yield_saw);
         tv_workload = (TextView) view.findViewById(R.id.tv_workload);
         tv_timestamp = (TextView) view.findViewById(R.id.tv_timestamp);
 
@@ -212,6 +217,13 @@ public class OverviewFragment extends Fragment {
                     tv_depletion.setText("정상 작동");
                     tv_depletion.setTextColor(Color.parseColor("#000000"));
                 }
+
+                long emission_barrel = mListMachineDataSet.get(i).getEmission_Barrel();
+                tv_emission_barrel.setText(emission_barrel+"");
+
+                long yield_saw = mListMachineDataSet.get(i).getYield_Saw();
+                tv_yield_saw.setText(yield_saw+"");
+
 
                 current = (int) (mListMachineDataSet.get(i).getCurrent_Workload());
                 total = (int) (mListMachineDataSet.get(i).getTotal_Workload());

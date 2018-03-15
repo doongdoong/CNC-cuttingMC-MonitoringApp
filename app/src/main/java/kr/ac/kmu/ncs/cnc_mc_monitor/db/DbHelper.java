@@ -44,6 +44,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 Constants.DB_SPINDLE + " TEXT, " +
                 Constants.DB_SAFETY_DOOR + " TEXT, " +
                 Constants.DB_DEPLETION + " TEXT, " +
+                Constants.DB_EMISSION_BARREL + " TEXT, " +
+                Constants.DB_YIELD_SAW + " TEXT, " +
                 Constants.DB_TOTAL_WORKLOAD + " TEXT, " +
                 Constants.DB_CURRENT_WORKLOAD + " TEXT, " +
                 Constants.DB_TIMESTAMP + " DATETIME" +
@@ -56,7 +58,7 @@ public class DbHelper extends SQLiteOpenHelper {
                                  String pressure_air_main, String pressure_oil_hydraulic,
                                  String servo_cut, String servo_transfer,
                                  String spindle, String safety_door,
-                                 String depletion, String total_workload, String current_workload, String timestamp) {
+                                 String depletion, String emission_barrel, String yield_saw, String total_workload, String current_workload, String timestamp) {
         SQLiteDatabase db = getWritableDatabase();
 
         Log.d(getClass().getSimpleName(), id);
@@ -76,6 +78,8 @@ public class DbHelper extends SQLiteOpenHelper {
                     "'" + spindle + "', " +
                     "'" + safety_door + "', " +
                     "'" + depletion + "', " +
+                    "'" + emission_barrel + "', " +
+                    "'" + yield_saw + "', " +
                     "'" + total_workload + "', " +
                     "'" + current_workload + "', " +
                     "'" + timestamp + "'" +
@@ -94,6 +98,7 @@ public class DbHelper extends SQLiteOpenHelper {
         try {
             db.execSQL("DELETE FROM " + machineTable + " WHERE id='" + id + "';");
         } catch (SQLiteConstraintException ex) {
+
             db.close();
             return false;
         }

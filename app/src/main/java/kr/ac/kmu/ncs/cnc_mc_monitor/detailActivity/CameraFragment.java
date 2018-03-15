@@ -73,7 +73,7 @@ public class CameraFragment extends Fragment{
     /**
      * Singleton pattern
      */
-    private CameraFragment() {
+    public CameraFragment() { // private?
     }
 
     public static CameraFragment getInstance() {

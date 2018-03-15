@@ -29,6 +29,8 @@ public class Constants {
      "spindle": 1, //스핀들 이상 에러
      "safety_door": 0, //안전 문 이상
      "depletion": 1, // 소제 부족
+     "emission_barrel": 1, // 배출통 관리
+     "yield_saw" : 4, // 톱당 생산수량
      "total_workload": 41 // 총 작업량
      "current_workload": 40 // 현재 작업량
      "timestamp": 1500621879 // 유닉스 타임
@@ -48,6 +50,8 @@ public class Constants {
     public static final String DB_SPINDLE = "spindle";
     public static final String DB_SAFETY_DOOR = "safety_door";
     public static final String DB_DEPLETION = "depletion";
+    public static final String DB_EMISSION_BARREL = "emission_barrel";
+    public static final String DB_YIELD_SAW = "yield_saw";
     public static final String DB_TOTAL_WORKLOAD = "total_workload";
     public static final String DB_CURRENT_WORKLOAD = "current_workload";
     public static final String DB_TIMESTAMP = "timestamp";
@@ -62,6 +66,8 @@ public class Constants {
     public static String SPINDLE = "";
     public static String SAFETY_DOOR = "";
     public static String DEPLETION = "";
+    public static String EMISSION_BARREL = "";
+    public static String YIELD_SAW = "";
     public static String TOTAL_WORKLOAD ;
     public static String CURRENT_WORKLOAD ;
     public static String TIMESTAMP = "";

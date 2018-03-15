@@ -158,13 +158,21 @@ public class DbUpdateService extends Service {
                                 Constants.SPINDLE = jObject.getString("spindle");
                                 Constants.SAFETY_DOOR = jObject.getString("safety_door");
                                 Constants.DEPLETION = jObject.getString("depletion");
+                                Constants.EMISSION_BARREL = jObject.getString("emission_barrel");
+                                Constants.YIELD_SAW = jObject.getString("yield_saw");
                                 Constants.TOTAL_WORKLOAD = jObject.getString("total_workload");
                                 Constants.CURRENT_WORKLOAD = jObject.getString("current_workload");
                                 Constants.TIMESTAMP = jObject.getString("timestamp");
 
+                                Log.d("ID", Constants.ID);
+                                Log.d("SAFETY_DOOR", Constants.SAFETY_DOOR);
+                                Log.d("EMISSION_BARREL", Constants.EMISSION_BARREL);
+                                Log.d("YIELD_SAW", Constants.YIELD_SAW);
+
                                 helper.insertMachine(Constants.ID, Constants.LUBRICANT_MACHINE, Constants.LUBRICANT_SAW,
                                         Constants.PRESSURE_AIR_MAIN, Constants.PRESSURE_OIL_HYDRAULIC, Constants.SERVO_CUT,
                                         Constants.SERVO_TRANSFER, Constants.SPINDLE, Constants.SAFETY_DOOR, Constants.DEPLETION,
+                                        Constants.EMISSION_BARREL, Constants.YIELD_SAW,
                                         Constants.TOTAL_WORKLOAD, Constants.CURRENT_WORKLOAD, Constants.TIMESTAMP);
                             }
 
@@ -210,6 +218,8 @@ public class DbUpdateService extends Service {
                                     (int) cursor.getInt(cursor.getColumnIndex("spindle")) > 0,
                                     (int) cursor.getInt(cursor.getColumnIndex("safety_door")) > 0,
                                     (int) cursor.getInt(cursor.getColumnIndex("depletion")) > 0,
+                                    Long.parseLong((String) cursor.getString(cursor.getColumnIndex("emission_barrel"))),
+                                    Long.parseLong((String) cursor.getString(cursor.getColumnIndex("yield_saw"))),
                                     Long.parseLong((String) cursor.getString(cursor.getColumnIndex("total_workload"))),
                                     Long.parseLong((String) cursor.getString(cursor.getColumnIndex("current_workload"))),
                                     Integer.parseInt((String) cursor.getString(cursor.getColumnIndex("timestamp"))));
@@ -234,6 +244,8 @@ public class DbUpdateService extends Service {
                                     (int) cursor.getInt(cursor.getColumnIndex("spindle")) > 0,
                                     (int) cursor.getInt(cursor.getColumnIndex("safety_door")) > 0,
                                     (int) cursor.getInt(cursor.getColumnIndex("depletion")) > 0,
+                                    Long.parseLong((String) cursor.getString(cursor.getColumnIndex("emission_barrel"))),
+                                    Long.parseLong((String) cursor.getString(cursor.getColumnIndex("yield_saw"))),
                                     Long.parseLong((String) cursor.getString(cursor.getColumnIndex("total_workload"))),
                                     Long.parseLong((String) cursor.getString(cursor.getColumnIndex("current_workload"))),
                                     Integer.parseInt((String) cursor.getString(cursor.getColumnIndex("timestamp")))));
