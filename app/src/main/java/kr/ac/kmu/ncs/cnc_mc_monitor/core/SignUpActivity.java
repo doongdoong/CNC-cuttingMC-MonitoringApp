@@ -18,6 +18,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 
@@ -62,12 +64,33 @@ public class SignUpActivity extends AppCompatActivity {
                 password = new String(edt_passwd.getText().toString());
                 organization = new String(Constants.ORGINIZATION);
 
-                signUpTask = new SignUpTask();
-                signUpTask.execute();
 
-                btn_OK.setEnabled(false);
+                if(name.equals("") || email.equals("") || password.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "공란을 채우세요.",Toast.LENGTH_SHORT).show();
+                }
+                else if(checkEmail(email)==true)
+                {
+                    signUpTask = new SignUpTask();
+                    signUpTask.execute();
+                    btn_OK.setEnabled(false);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "이메일 형식이 아닙니다.",Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
+    }
+
+    public static boolean checkEmail(String email){
+        String regex = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(email);
+        boolean isNormal = m.matches();
+        return isNormal;
     }
 
     class SignUpTask extends AsyncTask<String ,Integer ,Integer> {

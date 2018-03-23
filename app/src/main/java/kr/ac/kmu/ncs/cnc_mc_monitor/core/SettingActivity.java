@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 
@@ -42,10 +43,17 @@ public class SettingActivity extends ActionBarActivity {
         this.btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.putString("IP", edt_IP.getText().toString());
-                editor.putString("rnw_data_interval", edt_renewed_data_interval.getText().toString());
-                editor.commit();
-                finish();
+                if(edt_renewed_data_interval.getText().toString().equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "데이터 수신 간격을 입력하세요.",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    editor.putString("IP", edt_IP.getText().toString());
+                    editor.putString("rnw_data_interval", edt_renewed_data_interval.getText().toString());
+                    editor.commit();
+                    finish();
+                }
             }
         });
     }

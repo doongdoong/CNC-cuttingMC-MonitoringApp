@@ -18,6 +18,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 
@@ -66,12 +68,31 @@ public class FindPasswdActivity extends AppCompatActivity {
                 organization = new String(edt_organization.getText().toString());
 
 
-                findPasswdTask = new FindPasswdTask();
-                findPasswdTask.execute();
+                if(name.equals("") || ID.equals("") || password.equals("") || organization.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "공란을 채우세요.",Toast.LENGTH_SHORT).show();
+                }
+                else if(checkEmail(ID)==true)
+                {
+                    findPasswdTask = new FindPasswdTask();
+                    findPasswdTask.execute();
+                    btn_reset.setEnabled(false);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "이메일 형식이 아닙니다.",Toast.LENGTH_SHORT).show();
+                }
 
-                btn_reset.setEnabled(false);
             }
         });
+    }
+
+    public static boolean checkEmail(String email){
+        String regex = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(email);
+        boolean isNormal = m.matches();
+        return isNormal;
     }
 
     class FindPasswdTask extends AsyncTask<String ,Integer ,Integer> {

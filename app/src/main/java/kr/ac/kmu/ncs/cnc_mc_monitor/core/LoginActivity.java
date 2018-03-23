@@ -29,6 +29,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 import kr.ac.kmu.ncs.cnc_mc_monitor.listPanel.ListActivity;
@@ -158,10 +160,21 @@ public class LoginActivity extends AppCompatActivity {
             id = new String(edt_ID.getText().toString());
             password = new String(edt_passwd.getText().toString());
 
-            v.setEnabled(false);
 
-            loginTask = new LoginTask();
-            loginTask.execute();
+            if(id.equals("") || password.equals(""))
+            {
+                Toast.makeText(getApplicationContext(), "공란을 채우세요.",Toast.LENGTH_SHORT).show();
+            }
+            else if(checkEmail(id)==true)
+            {
+                v.setEnabled(false);
+                loginTask = new LoginTask();
+                loginTask.execute();
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "이메일 형식이 아닙니다.",Toast.LENGTH_SHORT).show();
+            }
         }
         else if(v.getId() == R.id.btn_signin) {
             Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
@@ -173,6 +186,14 @@ public class LoginActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
+    }
+
+    public static boolean checkEmail(String email){
+        String regex = "^[_a-zA-Z0-9-\\.]+@[\\.a-zA-Z0-9-]+\\.[a-zA-Z]+$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(email);
+        boolean isNormal = m.matches();
+        return isNormal;
     }
 
     class LoginTask extends AsyncTask<String ,Integer ,Integer> {

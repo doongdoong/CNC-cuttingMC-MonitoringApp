@@ -154,6 +154,7 @@ public class CameraFragment extends Fragment{
         videoview.setLayoutParams(new LinearLayout.LayoutParams(width, height));
         videoview.start();
 
+
         videoview.setOnErrorListener(new MediaPlayer.OnErrorListener() {
             @Override
             public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
