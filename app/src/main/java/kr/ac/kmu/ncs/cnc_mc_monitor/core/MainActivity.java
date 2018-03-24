@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Integer doInBackground(String... value) {
-            Boolean result = request();
+            Boolean result = establish();
 
             if(result != true) {
                 publishProgress(0);
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             btnConnect.setEnabled(true);
         }
 
-        public Boolean request() {
+        public Boolean establish() {
             StringBuilder output = new StringBuilder();
             InputStream is;
             ByteArrayOutputStream baos;
