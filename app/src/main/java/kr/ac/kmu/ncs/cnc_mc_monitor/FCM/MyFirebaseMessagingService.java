@@ -17,9 +17,6 @@ import com.google.firebase.messaging.RemoteMessage;
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 import kr.ac.kmu.ncs.cnc_mc_monitor.core.MainActivity;
 
-/**
- * Created by kimsiyoung on 2017-08-21.
- */
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
 

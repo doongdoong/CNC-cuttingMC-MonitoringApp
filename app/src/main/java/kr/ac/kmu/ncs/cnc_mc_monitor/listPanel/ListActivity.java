@@ -29,9 +29,6 @@ import kr.ac.kmu.ncs.cnc_mc_monitor.db.DbUpdateService;
 import kr.ac.kmu.ncs.cnc_mc_monitor.db.MachineDataSet;
 import kr.ac.kmu.ncs.cnc_mc_monitor.detailActivity.DetailActivity;
 
-/**
- * Created by NCS-KSW on 2017-07-20.
- */
 public class  ListActivity  extends Activity {
 
     private DbHelper helper;

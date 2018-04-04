@@ -22,9 +22,6 @@ import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
 import kr.ac.kmu.ncs.cnc_mc_monitor.db.DbHelper;
 import kr.ac.kmu.ncs.cnc_mc_monitor.db.MachineDataSet;
 
-/**
- * Created by NCS-KSW on 2017-07-20.
- */
 public class OverviewFragment extends Fragment {
     /**
      * Singleton Pattern

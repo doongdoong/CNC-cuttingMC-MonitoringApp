@@ -6,9 +6,6 @@ import android.graphics.BitmapFactory;
 
 import java.util.Date;
 
-/**
- * Created by NCS-KSW on 2017-07-20.
- */
 public class Constants {
 
     /**

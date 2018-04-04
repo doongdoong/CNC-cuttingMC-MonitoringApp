@@ -32,7 +32,7 @@
         <activity android:name=".core.SignUpActivity"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
-        <activity android:name=".core.FindPasswdActivity"
+        <activity android:name=".core.ModifyPasswdActivity"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
         <activity android:name=".core.SettingActivity"

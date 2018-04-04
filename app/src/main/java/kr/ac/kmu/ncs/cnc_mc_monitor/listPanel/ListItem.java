@@ -2,9 +2,6 @@ package kr.ac.kmu.ncs.cnc_mc_monitor.listPanel;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by NCS-KSW on 2017-07-20.
- */
 public class ListItem {
     private int machineID;
     private Bitmap thumnail;

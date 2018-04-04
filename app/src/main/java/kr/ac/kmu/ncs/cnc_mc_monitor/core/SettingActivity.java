@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 
-/**
- * Created by kimsiyoung on 2017-09-26.
- */
 public class SettingActivity extends ActionBarActivity {
     private EditText edt_IP;
     private EditText edt_renewed_data_interval;

@@ -23,10 +23,7 @@ import java.util.regex.Pattern;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 
-/**
- * Created by kimsiyoung on 2017-08-08.
- */
-public class FindPasswdActivity extends AppCompatActivity {
+public class ModifyPasswdActivity extends AppCompatActivity {
     private Button btn_reset;
     private EditText edt_organization;
     private EditText edt_name;
@@ -36,13 +33,13 @@ public class FindPasswdActivity extends AppCompatActivity {
     private String name;
     private String ID;
     private String password;
-    private FindPasswdTask findPasswdTask;
+    private ModifyPasswdTask modifyPasswdTask;
     private HttpURLConnection conn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.findpasswd_activity);
+        setContentView(R.layout.modifypasswd_activity);
 
         android.support.v7.app.ActionBar ab =getSupportActionBar();
         ab.setTitle(Constants.ORGINIZATION);
@@ -74,8 +71,8 @@ public class FindPasswdActivity extends AppCompatActivity {
                 }
                 else if(checkEmail(ID)==true)
                 {
-                    findPasswdTask = new FindPasswdTask();
-                    findPasswdTask.execute();
+                    modifyPasswdTask = new ModifyPasswdTask();
+                    modifyPasswdTask.execute();
                     btn_reset.setEnabled(false);
                 }
                 else
@@ -95,8 +92,8 @@ public class FindPasswdActivity extends AppCompatActivity {
         return isNormal;
     }
 
-    class FindPasswdTask extends AsyncTask<String ,Integer ,Integer> {
-        ProgressDialog asyncDialog = new ProgressDialog(FindPasswdActivity.this);
+    class ModifyPasswdTask extends AsyncTask<String ,Integer ,Integer> {
+        ProgressDialog asyncDialog = new ProgressDialog(ModifyPasswdActivity.this);
 
         protected void onPreExecute() {
             asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

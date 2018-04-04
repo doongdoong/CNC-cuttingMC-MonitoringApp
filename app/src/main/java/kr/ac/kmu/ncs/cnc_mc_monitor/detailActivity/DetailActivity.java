@@ -17,9 +17,6 @@ import java.util.List;
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
 
-/**
- * Created by NCS-KSW on 2017-07-20.
- */
 public class DetailActivity extends FragmentActivity {
 
     private String machineID;

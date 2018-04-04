@@ -9,9 +9,6 @@ import android.util.Log;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
 
-/**
- * Created by NCS-KSW on 2017-07-20.
- */
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final String machineTable = "machines";

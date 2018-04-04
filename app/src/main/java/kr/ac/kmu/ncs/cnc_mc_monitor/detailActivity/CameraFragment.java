@@ -49,9 +49,6 @@ import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * Created by NCS-KSW on 2017-07-20.
- */
 public class CameraFragment extends Fragment{
 
     private static CameraFragment instance;

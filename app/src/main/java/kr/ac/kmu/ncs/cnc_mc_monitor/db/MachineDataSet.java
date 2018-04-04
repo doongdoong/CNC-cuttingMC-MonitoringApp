@@ -4,9 +4,6 @@ import android.os.Parcel;
 
 import java.io.Serializable;
 
-/**
- * Created by NCS-KSW on 2017-07-20.
- */
 public class MachineDataSet implements Serializable{
     private int id;
     private boolean lubricant_machine;

@@ -2,9 +2,6 @@ package kr.ac.kmu.ncs.cnc_mc_monitor.detailActivity;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by kimsiyoung on 2017-09-07.
- */
 public class VideoListItem {
     private String machineID;
     private String title;

@@ -35,9 +35,6 @@ import java.util.regex.Pattern;
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 import kr.ac.kmu.ncs.cnc_mc_monitor.listPanel.ListActivity;
 
-/**
- * Created by kimsiyoung on 2017-08-07.
- */
 public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
     private Button btn_signin;
@@ -182,7 +179,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else if(v.getId() == R.id.btn_findPasswd) {
-            Intent intent = new Intent(getApplicationContext(), FindPasswdActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ModifyPasswdActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }

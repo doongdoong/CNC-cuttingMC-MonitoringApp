@@ -23,10 +23,6 @@ import java.util.regex.Pattern;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 
-/**
- * Created by kimsiyoung on 2017-08-08.
- */
-
 public class SignUpActivity extends AppCompatActivity {
     private Button btn_OK;
     private EditText edt_name;
