@@ -358,7 +358,7 @@
     </ScrollView>
     
     <Button
-        android:id="@+id/btn_power"
+        android:id="@+id/btn_poweroff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="장비 전원 종료"/>

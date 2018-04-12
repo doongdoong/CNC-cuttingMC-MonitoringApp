@@ -1,17 +1,21 @@
 package kr.ac.kmu.ncs.cnc_mc_monitor.detailActivity;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +23,7 @@ import java.util.ArrayList;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
+import kr.ac.kmu.ncs.cnc_mc_monitor.core.LoginActivity;
 import kr.ac.kmu.ncs.cnc_mc_monitor.db.DbHelper;
 import kr.ac.kmu.ncs.cnc_mc_monitor.db.MachineDataSet;
 
@@ -77,6 +82,7 @@ public class OverviewFragment extends Fragment {
     private TextView tv_yield_saw;
     private TextView tv_workload;
     private TextView tv_timestamp;
+    private Button btn_poweroff;
 
     @Nullable
     @Override
@@ -104,6 +110,46 @@ public class OverviewFragment extends Fragment {
         tv_yield_saw = (TextView) view.findViewById(R.id.tv_yield_saw);
         tv_workload = (TextView) view.findViewById(R.id.tv_workload);
         tv_timestamp = (TextView) view.findViewById(R.id.tv_timestamp);
+        btn_poweroff = (Button) view.findViewById(R.id.btn_poweroff);
+
+        btn_poweroff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v.getId() == R.id.btn_poweroff) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+
+                    // 제목셋팅
+                    alertDialogBuilder.setTitle("장비 전원 종료");
+
+                    // AlertDialog 셋팅
+                    alertDialogBuilder
+                            .setMessage("장비 전원을 종료하시겠습니까?")
+                            .setCancelable(false)
+                            .setPositiveButton("종료",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(
+                                                DialogInterface dialog, int id) {
+                                            // 장비 전원을 종료한다
+                                            //////////////////////////////////////////////////////////////////////// 장비 전원 종료 코드
+                                        }
+                                    })
+                            .setNegativeButton("취소",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(
+                                                DialogInterface dialog, int id) {
+                                            // 다이얼로그를 취소한다
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                    // 다이얼로그 생성
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // 다이얼로그 보여주기
+                    alertDialog.show();
+                }
+            }
+        });
 
         return view;
     }
