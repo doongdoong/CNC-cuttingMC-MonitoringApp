@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -17,15 +19,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.StringTokenizer;
 
 import kr.ac.kmu.ncs.cnc_mc_monitor.R;
 import kr.ac.kmu.ncs.cnc_mc_monitor.core.Constants;
 import kr.ac.kmu.ncs.cnc_mc_monitor.core.LoginActivity;
 import kr.ac.kmu.ncs.cnc_mc_monitor.db.DbHelper;
 import kr.ac.kmu.ncs.cnc_mc_monitor.db.MachineDataSet;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class OverviewFragment extends Fragment {
     /**
@@ -84,6 +100,11 @@ public class OverviewFragment extends Fragment {
     private TextView tv_timestamp;
     private Button btn_poweroff;
 
+
+    private SharedPreferences prf;
+    private HttpURLConnection conn;
+    private PowerOffTask powerOffTask;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -112,6 +133,8 @@ public class OverviewFragment extends Fragment {
         tv_timestamp = (TextView) view.findViewById(R.id.tv_timestamp);
         btn_poweroff = (Button) view.findViewById(R.id.btn_poweroff);
 
+        prf = getActivity().getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+
         btn_poweroff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +153,9 @@ public class OverviewFragment extends Fragment {
                                         public void onClick(
                                                 DialogInterface dialog, int id) {
                                             // 장비 전원을 종료한다
-                                            //////////////////////////////////////////////////////////////////////// 장비 전원 종료 코드
+                                            powerOffTask = new PowerOffTask();
+                                            powerOffTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
                                         }
                                     })
                             .setNegativeButton("취소",
@@ -302,4 +327,104 @@ public class OverviewFragment extends Fragment {
             }
         }
     };
+
+    class PowerOffTask extends AsyncTask<String, Integer, Integer> {
+        protected void onPreExecute() {
+        }
+
+
+        @Override
+        protected Integer doInBackground(String... value) {
+            Boolean result = poweroff();
+
+            if (result != true) {
+                publishProgress(0);
+                Log.d(this.getClass().getSimpleName(), "/poweroff 에러");
+                return null;
+            }
+
+            publishProgress(1);
+
+            return null;
+        }
+
+        protected void onProgressUpdate(Integer... value) {
+            if(value[0]==0)
+                Toast.makeText(getContext(), "장비 종료에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(getContext(), "장비를 종료하였습니다.", Toast.LENGTH_SHORT).show();
+        }
+
+        public Boolean poweroff() {
+            StringBuilder output = new StringBuilder();
+            InputStream is;
+            ByteArrayOutputStream baos;
+            String urlStr = prf.getString("IP", "");
+            Boolean result = false;
+
+            try {
+                URL url = new URL(urlStr + "/data/onoff");
+                conn = (HttpURLConnection) url.openConnection();
+
+                JSONObject json = new JSONObject();
+                try {
+                    json.put("id", machineID);
+                    json.put("onoff", 0);
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                    result = false;
+                }
+
+                String body = json.toString();
+
+                if (conn != null) {
+                    conn.setConnectTimeout(Constants.CONN_TIMEOUT);
+                    conn.setRequestMethod("PUT");
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
+                    conn.setRequestProperty("authorization", Constants.TOKEN);
+                    conn.setRequestProperty("Content-Type", "application/json");
+
+                    OutputStream os = conn.getOutputStream();
+                    os.write(body.getBytes());
+                    os.flush();
+
+                    String response;
+                    int responseCode = conn.getResponseCode();
+
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        is = conn.getInputStream();
+                        baos = new ByteArrayOutputStream();
+                        byte[] byteBuffer = new byte[1024];
+                        byte[] byteData = null;
+                        int nLength = 0;
+                        while ((nLength = is.read(byteBuffer, 0, byteBuffer.length)) != -1) {
+                            baos.write(byteBuffer, 0, nLength);
+                        }
+                        byteData = baos.toByteArray();
+
+                        response = new String(byteData);
+
+                        JSONObject responseJSON = new JSONObject(response);
+
+                        result = (Boolean) responseJSON.get("type");
+
+                        Log.d("onoff", result + "");
+
+
+                        is.close();
+                        conn.disconnect();
+                    }
+                }
+            } catch (MalformedURLException ex) {
+                ex.printStackTrace();
+                result = false;
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                result = false;
+            }
+
+            return result;
+        }
+    }
 }
